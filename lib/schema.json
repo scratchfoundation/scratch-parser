@@ -1,0 +1,52 @@
+{
+    "id": "https://scratch.mit.edu",
+    "description": "Scratch project schema",
+    "type": "object",
+    "properties": {
+        "objName": {
+            "type": "string"
+        },
+        "sounds": {
+            "type": "array"
+        },
+        "costumes": {
+            "type": "array"
+        },
+        "currentCostumeIndex": {
+            "type": "number",
+            "minimum": 0
+        },
+        "penLayerMD5": {
+            "type": "string"
+        },
+        "penLayerID": {
+            "type": "number",
+            "minimum": -1
+        },
+        "tempoBPM": {
+            "type": "number"
+        },
+        "videoAlpha": {
+            "type": "number",
+            "minimum": 0
+        },
+        "children": {
+            "type": "array"
+        },
+        "info": {
+            "type": "object"
+        }
+    },
+    "required": [
+        "objName",
+        "sounds",
+        "costumes",
+        "currentCostumeIndex",
+        "penLayerMD5",
+        "penLayerID",
+        "tempoBPM",
+        "videoAlpha",
+        "children",
+        "info"
+    ]
+}
