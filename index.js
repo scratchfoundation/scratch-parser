@@ -1,13 +1,25 @@
-var validate = require('./lib/validate');
+var async = require('async');
+
+var unpack = require('./lib/unpack');
 var parse = require('./lib/parse');
+var validate = require('./lib/validate');
+var analyze = require('./lib/analyze');
 
+/**
+ * Unpacks, parses, validates, and analyzes Scratch projects. If successful,
+ * will return a valid Scratch project object with appended metadata.
+ *
+ * @param {Buffer} Input buffer
+ *
+ * @return {Object}
+ */
 module.exports = function (input, callback) {
-    parse(input, function (err, project) {
-        if (err) return callback(err);
-
-        validate(project, function (err) {
-            if (err) return callback(err);
-            callback(null, project);
-        });
-    });
+    async.waterfall([
+        function (cb) {
+            unpack(input, cb);
+        },
+        parse,
+        validate,
+        analyze
+    ], callback);
 };

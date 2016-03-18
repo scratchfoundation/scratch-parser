@@ -6,11 +6,121 @@
         "objName": {
             "type": "string"
         },
-        "sounds": {
+        "variables": {
+            "type": "array",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                },
+                "isPersistent": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "name",
+                "value"
+            ]
+        },
+        "lists": {
+            "type": "array",
+            "properties": {
+                "listName": {
+                    "type": "string"
+                },
+                "contents": {
+                    "type": "array"
+                },
+                "isPersistent": {
+                    "type": "boolean"
+                },
+                "x": {
+                    "type": "number"
+                },
+                "y": {
+                    "type": "number"
+                },
+                "width": {
+                    "type": "number"
+                },
+                "height": {
+                    "type": "number"
+                },
+                "visible": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "listName",
+                "contents"
+            ]
+        },
+        "scripts": {
             "type": "array"
         },
+        "sounds": {
+            "type": "array",
+            "properties": {
+                "soundName": {
+                    "type": "string"
+                },
+                "soundID": {
+                    "type": "number"
+                },
+                "md5": {
+                    "type": "string"
+                },
+                "sampleCount": {
+                    "type": "number"
+                },
+                "rate": {
+                    "type": "number"
+                },
+                "format": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "soundName",
+                "soundID",
+                "md5",
+                "sampleCount",
+                "rate",
+                "format"
+            ]
+        },
         "costumes": {
-            "type": "array"
+            "type": "array",
+            "properties": {
+                "costumeName": {
+                    "type": "string"
+                },
+                "baseLayerID": {
+                    "type": "number"
+                },
+                "baseLayerMD5": {
+                    "type": "string"
+                },
+                "bitmapResolution": {
+                    "type": "number"
+                },
+                "rotationCenterX": {
+                    "type": "number"
+                },
+                "rotationCenterY": {
+                    "type": "number"
+                }
+            },
+            "required": [
+                "costumeName",
+                "baseLayerID",
+                "baseLayerMD5",
+                "bitmapResolution",
+                "rotationCenterX",
+                "rotationCenterY"
+            ]
         },
         "currentCostumeIndex": {
             "type": "number",
@@ -28,13 +138,62 @@
         },
         "videoAlpha": {
             "type": "number",
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 1
         },
         "children": {
-            "type": "array"
+            "type": "array",
+            "properties": {},
+            "required": [
+                "objName",
+                "sounds",
+                "costumes",
+                "currentCostumeIndex"
+            ]
         },
         "info": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+                "flashVersion": {
+                    "type": "string"
+                },
+                "swfVersion": {
+                    "type": "string"
+                },
+                "userAgent": {
+                    "type": "string"
+                },
+                "videoOn": {
+                    "type": "boolean"
+                },
+                "savedExtensions": {
+                    "type": "array",
+                    "properties": {
+                        "extensionName": {
+                            "type": "string"
+                        },
+                        "blockSpecs": {
+                            "type": "array"
+                        },
+                        "menus": {
+                            "type": "object"
+                        },
+                        "javascriptURL": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "extensionName",
+                        "blockSpecs",
+                        "menus",
+                        "javascriptURL"
+                    ]
+                }
+            },
+            "required": [
+                "flashVersion",
+                "swfVersion"
+            ]
         }
     },
     "required": [
@@ -43,7 +202,6 @@
         "costumes",
         "currentCostumeIndex",
         "penLayerMD5",
-        "penLayerID",
         "tempoBPM",
         "videoAlpha",
         "children",

@@ -5,6 +5,9 @@ TAP=./node_modules/.bin/tap
 # ------------------------------------------------------------------------------
 
 lint:
+	$(ESLINT) ./*.js
+	$(ESLINT) ./bin/*.js
+	$(ESLINT) ./lib/*.js
 	$(ESLINT) ./test/**/*.js
 
 test:
