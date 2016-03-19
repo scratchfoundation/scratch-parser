@@ -18,16 +18,18 @@ npm install scratch-parser
 #### Basic Use
 ```js
 var fs = require('fs');
-var scratchp = require('scratch-parser');
+var parser = require('scratch-parser');
 
 var buffer = fs.readFileSync('/path/to/project.sb2');
-scratchp(buffer, function (err, project) {
+parser(buffer, function (err, project) {
     if (err) // handle the error
     // do something interesting
 });
 ```
 
 ## Metadata
+The `scratch-parser` module will append metadata about the project should validation and parsing be successful. The `_meta` object includes:
+
 | Key               | Attributes                                               |
 | ----------------- | -------------------------------------------------------- |
 | `scripts`         | `count`                                                  |
