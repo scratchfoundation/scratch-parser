@@ -15,14 +15,14 @@
   },
   "dependencies": {
     "adm-zip": "0.4.7",
-    "ajv": "3.4.0",
-    "async": "1.5.2"
+    "ajv": "4.7.0",
+    "async": "2.0.1"
   },
   "devDependencies": {
-    "benchmark": "^2.0.0",
-    "eslint": "^1.10.3",
-    "glob": "^6.0.4",
-    "tap": "^5.1.1"
+    "benchmark": "^2.1.1",
+    "eslint": "^3.5.0",
+    "glob": "^7.0.6",
+    "tap": "^7.1.2"
   },
   "engines": {
     "node": ">=4.0"
