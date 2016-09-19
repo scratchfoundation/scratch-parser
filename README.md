@@ -1,7 +1,7 @@
 # scratch-parser
 #### Parser for Scratch projects
 
-[![Build Status](https://travis-ci.com/LLK/scratch-parser.svg?token=xzzHj4ct3SyBTpeqxnx1&branch=master)](https://travis-ci.com/LLK/scratch-parser)
+[![Build Status](https://travis-ci.org/LLK/scratch-parser.svg?branch=develop)](https://travis-ci.org/LLK/scratch-parser)
 [![Dependency Status](https://david-dm.org/llk/scratch-parser.svg)](https://david-dm.org/llk/scratch-parser)
 [![devDependency Status](https://david-dm.org/llk/scratch-parser/dev-status.svg)](https://david-dm.org/llk/scratch-parser#info=devDependencies)
 
