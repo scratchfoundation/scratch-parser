@@ -2,8 +2,8 @@
 #### Parser for Scratch projects
 
 [![Build Status](https://travis-ci.org/LLK/scratch-parser.svg?branch=develop)](https://travis-ci.org/LLK/scratch-parser)
-[![Dependency Status](https://david-dm.org/llk/scratch-parser.svg)](https://david-dm.org/llk/scratch-parser)
-[![devDependency Status](https://david-dm.org/llk/scratch-parser/dev-status.svg)](https://david-dm.org/llk/scratch-parser#info=devDependencies)
+[![dependencies Status](https://david-dm.org/llk/scratch-parser/status.svg)](https://david-dm.org/llk/scratch-parser)
+[![devDependencies Status](https://david-dm.org/llk/scratch-parser/dev-status.svg)](https://david-dm.org/llk/scratch-parser?type=dev)
 
 ## Overview
 The Scratch Parser is a [Node.js](https://nodejs.org) module that parses and validates [Scratch](https://scratch.mit.edu) projects. Internally, this utility is used for validation of Scratch projects as well as for extracting metadata from projects for research and search purposes.
