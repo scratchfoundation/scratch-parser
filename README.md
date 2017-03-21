@@ -112,8 +112,7 @@ npm install
 Now you're ready to make commits using `git cz`.
 
 ## Breaking changes
-If you're committing a change that makes the linter more strict, or will
-otherwise require changes to existing code, ensure your commit specifies a
-breaking change.  In your commit body, prefix the changes with "BREAKING CHANGE: "
+If you're committing a change that will require changes to existing code, ensure
+your commit specifies a breaking change.  In your commit body, prefix the changes with "BREAKING CHANGE: "
 This will cause a major version bump so downstream projects must choose to upgrade
 the config and will not break the build unexpectedly.
