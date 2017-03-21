@@ -1,6 +1,5 @@
 {
   "name": "scratch-parser",
-  "version": "1.0.0",
   "description": "Parser for Scratch projects",
   "author": "MIT Media Lab",
   "license": "BSD-3-Clause",
@@ -8,10 +7,11 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/LLK/scratch-parser.git"
+    "url": "https://github.com/LLK/scratch-parser.git"
   },
   "scripts": {
-    "test": "make test"
+    "test": "make test",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "dependencies": {
     "adm-zip": "0.4.7",
@@ -20,11 +20,18 @@
   },
   "devDependencies": {
     "benchmark": "^2.1.1",
+    "cz-conventional-changelog": "2.0.0",
     "eslint": "^3.5.0",
     "glob": "^7.0.6",
-    "tap": "^7.1.2"
+    "tap": "^7.1.2",
+    "semantic-release": "^6.3.2"
   },
   "engines": {
     "node": ">=4.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
