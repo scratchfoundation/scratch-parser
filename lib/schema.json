@@ -198,7 +198,6 @@
     },
     "required": [
         "objName",
-        "sounds",
         "costumes",
         "currentCostumeIndex",
         "penLayerMD5",
