@@ -14,7 +14,6 @@
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "dependencies": {
-    "adm-zip": "0.4.7",
     "ajv": "4.7.0",
     "async": "2.0.1"
   },

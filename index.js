@@ -1,6 +1,6 @@
 var async = require('async');
 
-var unpack = require('./lib/unpack');
+// var unpack = require('./lib/unpack');
 var parse = require('./lib/parse');
 var validate = require('./lib/validate');
 var analyze = require('./lib/analyze');
@@ -16,9 +16,10 @@ var analyze = require('./lib/analyze');
 module.exports = function (input, callback) {
     async.waterfall([
         function (cb) {
-            unpack(input, cb);
+            // unpack(input, cb);
+            parse(input, cb);
         },
-        parse,
+        // parse,
         validate,
         analyze
     ], callback);
