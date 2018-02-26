@@ -7,7 +7,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/LLK/scratch-parser.git"
+    "url": "git+ssh://git@github.com/LLK/scratch-parser.git"
   },
   "scripts": {
     "test": "make test",
