@@ -5,6 +5,7 @@
   "license": "BSD-3-Clause",
   "homepage": "https://github.com/LLK/scratch-parser#readme",
   "main": "index.js",
+  "version":"0.0.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/LLK/scratch-parser.git"
