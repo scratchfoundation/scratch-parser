@@ -38,3 +38,16 @@ test('json', function (t) {
         });
     }
 });
+
+test('json string', function (t) {
+    var set = data.json;
+    t.plan(set.length * 4);
+    for (var i in data.json) {
+        parser(data.json[i].toString('utf-8'), function (err, res) {
+            t.equal(err, null);
+            t.type(res, 'object');
+            t.type(res._meta, 'object');
+            t.type(res.info, 'object');
+        });
+    }
+});

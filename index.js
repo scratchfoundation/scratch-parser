@@ -9,7 +9,7 @@ var analyze = require('./lib/analyze');
  * Unpacks, parses, validates, and analyzes Scratch projects. If successful,
  * will return a valid Scratch project object with appended metadata.
  *
- * @param {Buffer} Input buffer
+ * @param {Buffer | string} Input buffer or string representing scratch project
  *
  * @return {Object}
  */
