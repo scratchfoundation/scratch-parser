@@ -9,6 +9,9 @@
     "type": "git",
     "url": "https://github.com/LLK/scratch-parser.git"
   },
+  "release": {
+    "branch": "develop"
+  },
   "scripts": {
     "test": "make test",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
