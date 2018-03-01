@@ -29,3 +29,13 @@ test('json', function (t) {
         t.end();
     });
 });
+
+test('json string', function (t) {
+    parser(data.example.json.toString('utf-8'), function (err, res) {
+        t.equal(err, null);
+        t.type(res, 'object');
+        t.type(res._meta, 'object');
+        t.type(res.info, 'object');
+        t.end();
+    });
+});

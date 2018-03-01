@@ -51,6 +51,29 @@ test('json', function (t) {
     });
 });
 
+test('json utf-8 string', function (t) {
+    var buffer = new Buffer(fixtures.json);
+    unpack(buffer.toString('utf-8'), function (err, res) {
+        t.equal(err, null);
+        t.type(res, 'string');
+        t.doesNotThrow(function () {
+            JSON.parse(res);
+        });
+        t.end();
+    });
+});
+
+test('invalid string', function (t) {
+    unpack('this is not json', function (err, res) {
+        t.equal(err, null);
+        t.type(res, 'string');
+        t.throws(function () {
+            JSON.parse(res);
+        });
+        t.end();
+    });
+});
+
 test('undefined', function (t) {
     unpack(undefined, function (err, res) {
         t.type(err, 'string');
