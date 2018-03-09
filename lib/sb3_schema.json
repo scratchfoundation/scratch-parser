@@ -203,10 +203,12 @@
                             "type": "string"
                         },
                         "warp": {
-                            "type": "boolean"
+                            "type": "string",
+                            "enum": ["true", "false"]
                         },
                         "hasnext": {
-                            "type": "boolean"
+                            "type": "string",
+                            "enum": ["true", "false"]
                         }
                     }
                 }
@@ -217,9 +219,35 @@
                 "topLevel"
             ]
         },
-        "target": {
+        "stage": {
             "type": "object",
+            "description": "Description of property (and/or property/value pairs) that are unique to the stage.",
             "properties": {
+                "name": {
+                    "type": "string",
+                    "enum": ["Stage"]
+                },
+                "isStage": {
+                    "type": "boolean",
+                    "enum": [true]
+                },
+            }
+        },
+        "sprite": {
+            "type": "object",
+            "description": "Description of property (and/or property/value pairs) for sprites.",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "not": {"enum": ["Stage", "stage"]}
+                },
+                "isStage": {
+                    "type": "boolean",
+                    "enum": [false]
+                },
+                "visible": {
+                    "type": "boolean",
+                },
                 "x": {
                     "type": "number"
                 },
@@ -239,14 +267,19 @@
                     "type": "string",
                     "enum": ["all around", "don't rotate", "left-right"]
                 },
+            },
+            "required": [
+                "name",
+                "isStage"
+            ]
+        },
+        "target": {
+            "type": "object",
+            "description" : "Properties common to both Scratch 3.0 Stage and Sprite",
+            "properties": {
                 "currentCostume": {
                     "type": "integer",
                     "minimum": 0
-                },
-                "costume": {"$ref": "#/definitions/costume"},
-                "costumeCount": {
-                    "type": "integer",
-                    "minimum": 1
                 },
                 "blocks": {
                     "type": "object",
@@ -278,46 +311,9 @@
                 "variables",
                 "costumes",
                 "sounds",
-                "blocks",
-                "rotationStyle",
-                "draggable"
+                "blocks"
             ]
         },
-        "stage": {
-            "type": "object",
-            "description": "Description of property (and/or property/value pairs) that are unique to the stage.",
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "enum": ["Stage"]
-                },
-                "isStage": {
-                    "type": "boolean",
-                    "enum": [true]
-                },
-                "visible": {
-                    "type": "boolean",
-                    "enum": [true]
-                }
-            }
-        },
-        "sprite": {
-            "type": "object",
-            "description": "Description of property (and/or property/value pairs) for sprites.",
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "not": {"enum": ["Stage", "stage"]}
-                },
-                "isStage": {
-                    "type": "boolean",
-                    "enum": [false]
-                },
-                "visible": {
-                    "type": "boolean",
-                }
-            }
-        }
     },
     "type": "object",
     "properties": {
