@@ -1,7 +1,7 @@
 var ajv = require('ajv')();
 var test = require('tap').test;
 var meta = require('../fixtures/meta.json');
-var schema = require('../../lib/schema.json');
+var schema = require('../../lib/sb2_schema.json');
 
 test('spec', function (t) {
     t.type(schema, 'object');
