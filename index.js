@@ -15,19 +15,33 @@ var analyze = require('./lib/analyze');
  * @return {Object}
  */
 module.exports = function (input, callback) {
+    // A wrapper around the analyze function, so that
+    // it only gets called on 2.0 projects
+    var analyzeWrapper = function (validatedProject, cb) {
+        if (validatedProject.projectVersion !== 2) {
+            return cb(null, validatedProject);
+        }
+        analyze(validatedProject, cb);
+    };
+
+    // First unpack the input (need this outside of the async waterfall so that
+    // unoackedProject can be refered to again)
     unpack(input, function(err, unpackedProject) {
         if (err) {
             return callback(err);
         }
+
         async.waterfall([
             function (cb) {
                 parse(unpackedProject[0], cb);
             },
             validate,
-            analyze
-        ], function(err2, validatedInput) {
-            if (err2) {
-                return callback(err2);
+            analyzeWrapper
+        ], function(error, validatedInput) {
+            // One more callback wrapper so that we can re-package everything
+            // with the possible zip returned from unpack
+            if (error) {
+                return callback(error);
             }
             callback(null, [validatedInput, unpackedProject[1]]);
         });
