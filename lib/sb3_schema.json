@@ -1,5 +1,6 @@
 {
-    "id": "https://scratch.mit.edu",
+    "id": "https://scratch.mit.edu/sb3_schema.json",
+    "$schema": "http://json-schema.org/schema#",
     "description": "Scratch 3.0 Project Schema",
     "definitions": {
         "optionalString": {
@@ -90,7 +91,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "enum": ["", "scalar"],
+                    "enum": ["", "scalar"]
                 },
                 "value": {
                     "oneOf": [
@@ -230,7 +231,7 @@
                 "isStage": {
                     "type": "boolean",
                     "enum": [true]
-                },
+                }
             }
         },
         "sprite": {
@@ -246,7 +247,7 @@
                     "enum": [false]
                 },
                 "visible": {
-                    "type": "boolean",
+                    "type": "boolean"
                 },
                 "x": {
                     "type": "number"
@@ -266,7 +267,7 @@
                 "rotationStyle": {
                     "type": "string",
                     "enum": ["all around", "don't rotate", "left-right"]
-                },
+                }
             },
             "required": [
                 "name",
@@ -313,7 +314,7 @@
                 "sounds",
                 "blocks"
             ]
-        },
+        }
     },
     "type": "object",
     "properties": {
