@@ -1,5 +1,6 @@
 {
-    "id": "https://scratch.mit.edu",
+    "id": "https://scratch.mit.edu/sb2_schema.json",
+    "$schema": "http://json-schema.org/schema#",
     "description": "Scratch project schema",
     "type": "object",
     "properties": {

@@ -9,9 +9,15 @@ test('spec', function (t) {
 
 test('valid', function (t) {
     for (var i = 0; i < data.json.length; i++) {
-        parse(data.json[i].toString(), function (err, res) {
-            t.equal(err, null);
-            t.type(res, 'object');
+        var currData = data.json[i];
+        var testString = 'valid subtest ' + i;
+        test(testString, function(subTest) {
+            parse(currData.toString(),
+                function (err, res) {
+                    subTest.equal(err, null);
+                    subTest.type(res, 'object');
+                    subTest.end();
+                });
         });
     }
     t.end();
