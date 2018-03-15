@@ -14,12 +14,21 @@ var analyze = require('./lib/analyze');
  * @return {Object}
  */
 module.exports = function (input, callback) {
-    async.waterfall([
-        function (cb) {
-            unpack(input, cb);
-        },
-        parse,
-        validate,
-        analyze
-    ], callback);
+    unpack(input, function(err, unpackedProject) {
+        if (err) {
+            return callback(err);
+        }
+        async.waterfall([
+            function (cb) {
+                parse(unpackedProject[0], cb);
+            },
+            validate,
+            analyze
+        ], function(err2, validatedInput) {
+            if (err2) {
+                return callback(err2);
+            }
+            callback(null, [validatedInput, unpackedProject[1]]);
+        });
+    });
 };
