@@ -11,7 +11,7 @@
         },
         "assetId": {
             "type": "string",
-            "pattern": "^[a-f0-9]{32}$"
+            "pattern": "^[a-fA-F0-9]{32}$"
         },
         "costume": {
             "type": "object",
@@ -59,7 +59,7 @@
                 },
                 "md5": {
                     "type": "string",
-                    "pattern": "^[a-f0-9]{32}.[a-z]+$"
+                    "pattern": "^[a-fA-F0-9]{32}.[a-zA-Z]+$"
                 },
                 "name": {
                     "type": "string"
