@@ -1,4 +1,5 @@
 var test = require('tap').test;
+var JSZip = require('jszip');
 var data = require('../fixtures/data');
 var parser = require('../../index');
 
@@ -11,31 +12,43 @@ test('sb', function (t) {
 });
 
 test('sb2', function (t) {
-    parser(data.example.sb2, function (err, res) {
+    parser(data.example.sb2, function (err, result) {
         t.equal(err, null);
+        t.equal(Array.isArray(result), true);
+        var res = result[0];
+        var possibleZip = result[1];
         t.type(res, 'object');
         t.type(res._meta, 'object');
         t.type(res.info, 'object');
+        t.equal(possibleZip instanceof JSZip, true);
         t.end();
     });
 });
 
 test('json', function (t) {
-    parser(data.example.json, function (err, res) {
+    parser(data.example.json, function (err, result) {
         t.equal(err, null);
+        t.equal(Array.isArray(result), true);
+        var res = result[0];
+        var possibleZip = result[1];
         t.type(res, 'object');
         t.type(res._meta, 'object');
         t.type(res.info, 'object');
+        t.equal(possibleZip, null);
         t.end();
     });
 });
 
 test('json string', function (t) {
-    parser(data.example.json.toString('utf-8'), function (err, res) {
+    parser(data.example.json.toString('utf-8'), function (err, result) {
         t.equal(err, null);
+        t.equal(Array.isArray(result), true);
+        var res = result[0];
+        var possibleZip = result[1];
         t.type(res, 'object');
         t.type(res._meta, 'object');
         t.type(res.info, 'object');
+        t.equal(possibleZip, null);
         t.end();
     });
 });
