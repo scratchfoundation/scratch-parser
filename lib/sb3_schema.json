@@ -32,9 +32,6 @@
                 },
                 "rotationCenterY": {
                     "type": "number"
-                },
-                "skinId": {
-                    "type": "integer"
                 }
             },
             "required": [
@@ -68,9 +65,6 @@
                     "type": "integer"
                 },
                 "sampleCount": {
-                    "type": "integer"
-                },
-                "soundID": {
                     "type": "integer"
                 }
             },
