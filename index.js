@@ -25,7 +25,7 @@ module.exports = function (input, callback) {
     };
 
     // First unpack the input (need this outside of the async waterfall so that
-    // unoackedProject can be refered to again)
+    // unpackedProject can be refered to again)
     unpack(input, function(err, unpackedProject) {
         if (err) {
             return callback(err);
