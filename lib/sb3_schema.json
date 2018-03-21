@@ -24,6 +24,10 @@
                     "type": "string",
                     "enum": ["png", "PNG", "svg", "SVG", "jpeg", "JPEG", "jpg", "JPG", "bmp", "BMP"]
                 },
+                "md5ext": {
+                    "type": "string",
+                    "pattern": "^[a-fA-F0-9]{32}.[a-zA-Z]+$"
+                },
                 "name": {
                     "type": "string"
                 },
@@ -54,7 +58,7 @@
                     "type": "string",
                     "enum": ["", "adpcm"]
                 },
-                "md5": {
+                "md5ext": {
                     "type": "string",
                     "pattern": "^[a-fA-F0-9]{32}.[a-zA-Z]+$"
                 },
