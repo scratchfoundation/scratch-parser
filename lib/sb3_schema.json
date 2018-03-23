@@ -76,9 +76,7 @@
                 "assetId",
                 "dataFormat",
                 "format",
-                "name",
-                "rate",
-                "sampleCount"
+                "name"
             ]
         },
         "scalar_variable": {
