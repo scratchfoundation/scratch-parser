@@ -9,6 +9,13 @@
                 {"type": "null"}
             ]
         },
+        "boolOrBoolString": {
+            "oneOf": [
+                {"type": "string",
+                 "enum": ["true", "false"]},
+                {"type": "boolean"}
+            ]
+        },
         "assetId": {
             "type": "string",
             "pattern": "^[a-fA-F0-9]{32}$"
@@ -145,9 +152,7 @@
                             "name": {
                                 "type": "string"
                             },
-                            "block": {
-                                "type": "string"
-                            },
+                            "block": {"$ref":"#/definitions/optionalString"},
                             "shadow": {"$ref":"#/definitions/optionalString"},
                             "value": {
                                 "oneOf": [
@@ -205,14 +210,8 @@
                         "argumentids": {
                             "type": "string"
                         },
-                        "warp": {
-                            "type": "string",
-                            "enum": ["true", "false"]
-                        },
-                        "hasnext": {
-                            "type": "string",
-                            "enum": ["true", "false"]
-                        }
+                        "warp": {"$ref":"#/definitions/boolOrBoolString"},
+                        "hasnext": {"$ref":"#/definitions/boolOrBoolString"}
                     }
                 }
             },
