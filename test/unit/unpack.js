@@ -1,6 +1,7 @@
 var fs = require('fs');
 var path = require('path');
 var test = require('tap').test;
+var JSZip = require('jszip');
 var unpack = require('../../lib/unpack');
 
 var fixtures = {
@@ -31,10 +32,12 @@ test('sb2', function (t) {
     var buffer = new Buffer(fixtures.sb2);
     unpack(buffer, function (err, res) {
         t.equal(err, null);
-        t.type(res, 'string');
+        t.equal(Array.isArray(res), true);
+        t.type(res[0], 'string');
         t.doesNotThrow(function () {
-            JSON.parse(res);
+            JSON.parse(res[0]);
         });
+        t.equal(res[1] instanceof JSZip, true);
         t.end();
     });
 });
@@ -43,10 +46,12 @@ test('json', function (t) {
     var buffer = new Buffer(fixtures.json);
     unpack(buffer, function (err, res) {
         t.equal(err, null);
-        t.type(res, 'string');
+        t.equal(Array.isArray(res), true);
+        t.type(res[0], 'string');
         t.doesNotThrow(function () {
-            JSON.parse(res);
+            JSON.parse(res[0]);
         });
+        t.equal(res[1], null);
         t.end();
     });
 });
@@ -55,10 +60,12 @@ test('json utf-8 string', function (t) {
     var buffer = new Buffer(fixtures.json);
     unpack(buffer.toString('utf-8'), function (err, res) {
         t.equal(err, null);
-        t.type(res, 'string');
+        t.equal(Array.isArray(res), true);
+        t.type(res[0], 'string');
         t.doesNotThrow(function () {
-            JSON.parse(res);
+            JSON.parse(res[0]);
         });
+        t.equal(res[1], null);
         t.end();
     });
 });
@@ -66,10 +73,12 @@ test('json utf-8 string', function (t) {
 test('invalid string', function (t) {
     unpack('this is not json', function (err, res) {
         t.equal(err, null);
-        t.type(res, 'string');
+        t.equal(Array.isArray(res), true);
+        t.type(res[0], 'string');
         t.throws(function () {
-            JSON.parse(res);
+            JSON.parse(res[0]);
         });
+        t.equal(res[1], null);
         t.end();
     });
 });

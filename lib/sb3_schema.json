@@ -1,0 +1,363 @@
+{
+    "$id": "https://scratch.mit.edu/sb3_schema.json",
+    "$schema": "http://json-schema.org/schema#",
+    "description": "Scratch 3.0 Project Schema",
+    "definitions": {
+        "optionalString": {
+            "oneOf": [
+                {"type": "string"},
+                {"type": "null"}
+            ]
+        },
+        "boolOrBoolString": {
+            "oneOf": [
+                {"type": "string",
+                 "enum": ["true", "false"]},
+                {"type": "boolean"}
+            ]
+        },
+        "assetId": {
+            "type": "string",
+            "pattern": "^[a-fA-F0-9]{32}$"
+        },
+        "costume": {
+            "type": "object",
+            "properties": {
+                "assetId": { "$ref": "#/definitions/assetId"},
+                "bitmapResolution": {
+                    "type": "integer"
+                },
+                "dataFormat": {
+                    "type": "string",
+                    "enum": ["png", "PNG", "svg", "SVG", "jpeg", "JPEG", "jpg", "JPG", "bmp", "BMP"]
+                },
+                "md5ext": {
+                    "type": "string",
+                    "pattern": "^[a-fA-F0-9]{32}.[a-zA-Z]+$"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "rotationCenterX": {
+                    "type": "number"
+                },
+                "rotationCenterY": {
+                    "type": "number"
+                }
+            },
+            "required": [
+                "assetId",
+                "dataFormat",
+                "name",
+                "rotationCenterX",
+                "rotationCenterY"
+            ]
+        },
+        "sound": {
+            "type": "object",
+            "properties": {
+                "assetId": { "$ref": "#/definitions/assetId"},
+                "dataFormat": {
+                    "type": "string",
+                    "enum": ["wav", "WAV", "wave", "WAVE", "mp3", "MP3"]
+                },
+                "format": {
+                    "type": "string",
+                    "enum": ["", "adpcm"]
+                },
+                "md5ext": {
+                    "type": "string",
+                    "pattern": "^[a-fA-F0-9]{32}.[a-zA-Z]+$"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "rate": {
+                    "type": "integer"
+                },
+                "sampleCount": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "assetId",
+                "dataFormat",
+                "format",
+                "name"
+            ]
+        },
+        "scalar_variable": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": ["", "scalar"]
+                },
+                "value": {
+                    "oneOf": [
+                        {"type": "string"},
+                        {"type": "number"}
+                    ]
+                }
+            }
+        },
+        "list": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": ["list"]
+                },
+                "value": {
+                    "type": "array"
+                }
+            }
+        },
+        "broadcast_message": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": ["broadcast_msg"]
+                },
+                "value": {
+                    "type": "string",
+                    "not": {"enum": [""]}
+                }
+            }
+        },
+        "block": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "opcode": {
+                    "type": "string"
+                },
+                "inputs": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "block": {"$ref":"#/definitions/optionalString"},
+                            "shadow": {"$ref":"#/definitions/optionalString"},
+                            "value": {
+                                "oneOf": [
+                                    {"type": "string"},
+                                    {"type": "number"}
+                                ]
+                            }
+                        }
+                    }
+                },
+                "fields": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "value": {
+                                "oneOf": [
+                                    {"type": "string"},
+                                    {"type": "number"}
+                                ]
+                            }
+                        }
+                    }
+                },
+                "next": {"$ref":"#/definitions/optionalString"},
+                "topLevel": {
+                    "type": "boolean"
+                },
+                "parent": {"$ref":"#/definitions/optionalString"},
+                "shadow": {
+                    "type": "boolean"
+                },
+                "x": {
+                    "type": "number"
+                },
+                "y": {
+                    "type": "number"
+                },
+                "mutation": {
+                    "type": "object",
+                    "properties": {
+                        "tagName": {
+                            "type": "string",
+                            "enum": ["mutation"]
+                        },
+                        "children": {
+                            "type": "array"
+                        },
+                        "proccode": {
+                            "type": "string"
+                        },
+                        "argumentids": {
+                            "type": "string"
+                        },
+                        "warp": {"$ref":"#/definitions/boolOrBoolString"},
+                        "hasnext": {"$ref":"#/definitions/boolOrBoolString"}
+                    }
+                }
+            },
+            "required": [
+                "id",
+                "opcode"
+            ]
+        },
+        "stage": {
+            "type": "object",
+            "description": "Description of property (and/or property/value pairs) that are unique to the stage.",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "enum": ["Stage"]
+                },
+                "isStage": {
+                    "type": "boolean",
+                    "enum": [true]
+                }
+            }
+        },
+        "sprite": {
+            "type": "object",
+            "description": "Description of property (and/or property/value pairs) for sprites.",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "not": {"enum": ["Stage", "stage"]}
+                },
+                "isStage": {
+                    "type": "boolean",
+                    "enum": [false]
+                },
+                "visible": {
+                    "type": "boolean"
+                },
+                "x": {
+                    "type": "number"
+                },
+                "y": {
+                    "type": "number"
+                },
+                "size": {
+                    "type": "number"
+                },
+                "direction": {
+                    "type": "number"
+                },
+                "draggable": {
+                    "type": "boolean"
+                },
+                "rotationStyle": {
+                    "type": "string",
+                    "enum": ["all around", "don't rotate", "left-right"]
+                }
+            },
+            "required": [
+                "name",
+                "isStage"
+            ]
+        },
+        "target": {
+            "type": "object",
+            "description" : "Properties common to both Scratch 3.0 Stage and Sprite",
+            "properties": {
+                "currentCostume": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "blocks": {
+                    "type": "object",
+                    "additionalProperties": {"$ref":"#/definitions/block"}
+                },
+                "variables": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "oneOf": [
+                            {"$ref":"#/definitions/scalar_variable"},
+                            {"$ref":"#/definitions/list"},
+                            {"$ref":"#/definitions/broadcast_message"}
+                        ]
+                    }
+                },
+                "costumes": {
+                    "type": "array",
+                    "items": {"$ref":"#/definitions/costume"},
+                    "minItems": 1,
+                    "uniqueItems": true
+                },
+                "sounds":{
+                    "type": "array",
+                    "items": {"$ref":"#/definitions/sound"},
+                    "uniqueItems": true
+                }
+            },
+            "required": [
+                "variables",
+                "costumes",
+                "sounds",
+                "blocks"
+            ]
+        }
+    },
+    "type": "object",
+    "properties": {
+        "meta": {
+            "type": "object",
+            "properties": {
+                "semver": {
+                    "type": "string",
+                    "pattern": "^(3.[0-9]+.[0-9]+)$"
+                },
+                "vm": {
+                    "type": "string",
+                    "pattern": "^([0-9]+.[0-9]+.[0-9]+)($|-)"
+                },
+                "agent": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "semver"
+            ]
+        },
+
+        "targets": {
+            "type": "array",
+            "items": [
+                {
+                    "allOf": [
+                        {"$ref": "#/definitions/stage" },
+                        {"$ref": "#/definitions/target"}
+                    ]
+                }
+            ],
+            "additionalItems": {
+                "allOf": [
+                    {"$ref": "#/definitions/sprite"},
+                    {"$ref": "#/definitions/target"}
+                ]
+            }
+        }
+    },
+    "required": [
+        "meta",
+        "targets"
+    ]
+}
