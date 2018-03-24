@@ -6,7 +6,7 @@
 [![devDependencies Status](https://david-dm.org/llk/scratch-parser/dev-status.svg)](https://david-dm.org/llk/scratch-parser?type=dev)
 
 ## Overview
-The Scratch Parser is a [Node.js](https://nodejs.org) module that parses and validates [Scratch](https://scratch.mit.edu) projects. Internally, this utility is used for validation of Scratch projects as well as for extracting metadata from projects for research and search purposes.
+The Scratch Parser is a [Node.js](https://nodejs.org) module that parses and validates [Scratch](https://scratch.mit.edu) projects.
 
 ## API
 
@@ -26,21 +26,6 @@ parser(buffer, function (err, project) {
     // do something interesting
 });
 ```
-
-## Metadata
-The `scratch-parser` module will append metadata about the project should validation and parsing be successful. The `_meta` object includes:
-
-| Key               | Attributes                                               |
-| ----------------- | -------------------------------------------------------- |
-| `scripts`         | `count`                                                  |
-| `blocks`          | `count`, `unique`, `list`, `frequency`                   |
-| `sprites`         | `count`                                                  |
-| `variables`       | `count`                                                  |
-| `lists`           | `count`                                                  |
-| `costumes`        | `count`, `list`, `hash`                                  |
-| `sounds`          | `count`, `list`, `hash`                                  |
-| `extensions`      | `count`, `list`                                          |
-| `comments`        | `count`                                                  |
 
 #### "Info"
 In addition to the `_meta` data described above, Scratch projects include an attribute called `info` that *may* include the following:

@@ -3,7 +3,6 @@ var async = require('async');
 var unpack = require('./lib/unpack');
 var parse = require('./lib/parse');
 var validate = require('./lib/validate');
-var analyze = require('./lib/analyze');
 
 /**
  * Unpacks, parses, validates, and analyzes Scratch projects. If successful,
@@ -17,7 +16,6 @@ module.exports = function (input, callback) {
             unpack(input, cb);
         },
         parse,
-        validate,
-        analyze
+        validate
     ], callback);
 };

@@ -15,12 +15,11 @@ test('sb', function (t) {
 
 test('sb2', function (t) {
     var set = data.sb2;
-    t.plan(set.length * 4);
+    t.plan(set.length * 3);
     for (var i in data.sb2) {
         parser(data.sb2[i], function (err, res) {
             t.equal(err, null);
             t.type(res, 'object');
-            t.type(res._meta, 'object');
             t.type(res.info, 'object');
         });
     }
@@ -28,12 +27,11 @@ test('sb2', function (t) {
 
 test('json', function (t) {
     var set = data.json;
-    t.plan(set.length * 4);
+    t.plan(set.length * 3);
     for (var i in data.json) {
         parser(data.json[i], function (err, res) {
             t.equal(err, null);
             t.type(res, 'object');
-            t.type(res._meta, 'object');
             t.type(res.info, 'object');
         });
     }
@@ -41,12 +39,11 @@ test('json', function (t) {
 
 test('json string', function (t) {
     var set = data.json;
-    t.plan(set.length * 4);
+    t.plan(set.length * 3);
     for (var i in data.json) {
         parser(data.json[i].toString('utf-8'), function (err, res) {
             t.equal(err, null);
             t.type(res, 'object');
-            t.type(res._meta, 'object');
             t.type(res.info, 'object');
         });
     }

@@ -14,7 +14,6 @@ test('sb2', function (t) {
     parser(data.example.sb2, function (err, res) {
         t.equal(err, null);
         t.type(res, 'object');
-        t.type(res._meta, 'object');
         t.type(res.info, 'object');
         t.end();
     });
@@ -24,7 +23,6 @@ test('json', function (t) {
     parser(data.example.json, function (err, res) {
         t.equal(err, null);
         t.type(res, 'object');
-        t.type(res._meta, 'object');
         t.type(res.info, 'object');
         t.end();
     });
@@ -34,7 +32,6 @@ test('json string', function (t) {
     parser(data.example.json.toString('utf-8'), function (err, res) {
         t.equal(err, null);
         t.type(res, 'object');
-        t.type(res._meta, 'object');
         t.type(res.info, 'object');
         t.end();
     });
