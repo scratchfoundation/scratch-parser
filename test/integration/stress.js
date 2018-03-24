@@ -16,7 +16,7 @@ test('sb', function (t) {
 
 test('sb2', function (t) {
     var set = data.sb2;
-    t.plan(set.length * 6);
+    t.plan(set.length * 5);
     for (var i in data.sb2) {
         parser(data.sb2[i], function (err, result) {
             t.equal(err, null);
@@ -24,7 +24,6 @@ test('sb2', function (t) {
             var res = result[0];
             var possibleZip = result[1];
             t.type(res, 'object');
-            t.type(res._meta, 'object');
             t.type(res.info, 'object');
             t.equal(possibleZip instanceof JSZip, true);
         });
@@ -33,7 +32,7 @@ test('sb2', function (t) {
 
 test('json', function (t) {
     var set = data.json;
-    t.plan(set.length * 6);
+    t.plan(set.length * 5);
     for (var i in data.json) {
         parser(data.json[i], function (err, result) {
             t.equal(err, null);
@@ -41,7 +40,6 @@ test('json', function (t) {
             var res = result[0];
             var possibleZip = result[1];
             t.type(res, 'object');
-            t.type(res._meta, 'object');
             t.type(res.info, 'object');
             t.equal(possibleZip, null);
         });
@@ -50,7 +48,7 @@ test('json', function (t) {
 
 test('json string', function (t) {
     var set = data.json;
-    t.plan(set.length * 6);
+    t.plan(set.length * 5);
     for (var i in data.json) {
         parser(data.json[i].toString('utf-8'), function (err, result) {
             t.equal(err, null);
@@ -58,7 +56,6 @@ test('json string', function (t) {
             var res = result[0];
             var possibleZip = result[1];
             t.type(res, 'object');
-            t.type(res._meta, 'object');
             t.type(res.info, 'object');
             t.equal(possibleZip, null);
         });

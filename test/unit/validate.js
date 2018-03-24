@@ -16,12 +16,12 @@ test('valid', function (t) {
 });
 
 test('invalid', function (t) {
-    validate({foo:1}, function (err, res) {
+    validate({foo: 1}, function (err, res) {
         t.type(err, 'object');
         t.type(err.validationError, 'string');
         var sb2Errs = err.sb2Errors;
         t.equal(Array.isArray(sb2Errs), true);
-        t.equal(res, undefined);
+        t.type(res, 'undefined');
         t.type(sb2Errs[0], 'object');
         t.type(sb2Errs[0].keyword, 'string');
         t.type(sb2Errs[0].dataPath, 'string');

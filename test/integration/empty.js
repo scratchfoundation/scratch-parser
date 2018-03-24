@@ -18,7 +18,6 @@ test('sb2', function (t) {
         var res = result[0];
         var possibleZip = result[1];
         t.type(res, 'object');
-        t.type(res._meta, 'object');
         t.type(res.info, 'object');
         t.equal(possibleZip instanceof JSZip, true);
         t.end();
@@ -32,7 +31,6 @@ test('json', function (t) {
         var res = result[0];
         var possibleZip = result[1];
         t.type(res, 'object');
-        t.type(res._meta, 'object');
         t.type(res.info, 'object');
         t.equal(possibleZip, null);
         t.end();
@@ -46,7 +44,6 @@ test('json string', function (t) {
         var res = result[0];
         var possibleZip = result[1];
         t.type(res, 'object');
-        t.type(res._meta, 'object');
         t.type(res.info, 'object');
         t.equal(possibleZip, null);
         t.end();

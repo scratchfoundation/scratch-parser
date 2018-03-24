@@ -60,12 +60,12 @@ test('zip without project json', function (t) {
 
 test('zip with fake project json', function (t) {
     var buffer = new Buffer(fixtures.zipFakeProjectJSON);
-    unzip(buffer, function(err, res) {
+    unzip(buffer, function (err, res) {
         t.equal(err, null);
         t.equal(Array.isArray(res), true);
         t.type(res[0], 'string');
         t.equal(res[0], 'this is not json\n');
-        t.throws(function() {
+        t.throws(function () {
             JSON.parse(res[0]);
         });
         t.equal(res[1] instanceof JSZip, true);
@@ -84,11 +84,12 @@ test('random string instead of zip', function (t) {
 });
 
 test('undefined', function (t) {
-    unzip(undefined, function (err, res) {
+    var foo;
+    unzip(foo, function (err, obj) {
         t.type(err, 'string');
         var errorMessage = 'Failed to unzip and extract project.json';
         t.equal(err.startsWith(errorMessage), true);
-        t.equal(res, undefined);
+        t.type(obj, 'undefined');
         t.end();
     });
 });
@@ -98,7 +99,7 @@ test('null', function (t) {
         t.type(err, 'string');
         var errorMessage = 'Failed to unzip and extract project.json';
         t.equal(err.startsWith(errorMessage), true);
-        t.equal(obj, undefined);
+        t.type(obj, 'undefined');
         t.end();
     });
 });
@@ -108,7 +109,7 @@ test('object', function (t) {
         t.type(err, 'string');
         var errorMessage = 'Failed to unzip and extract project.json';
         t.equal(err.startsWith(errorMessage), true);
-        t.equal(obj, undefined);
+        t.type(obj, 'undefined');
         t.end();
     });
 });
