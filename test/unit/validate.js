@@ -16,9 +16,9 @@ test('valid', function (t) {
 });
 
 test('invalid', function (t) {
-    validate({foo:1}, function (err, res) {
+    validate({foo: 1}, function (err, res) {
         t.equal(Array.isArray(err), true);
-        t.equal(res, undefined);
+        t.type(res, 'undefined');
         t.type(err[0], 'object');
         t.type(err[0].keyword, 'string');
         t.type(err[0].dataPath, 'string');

@@ -20,7 +20,7 @@ test('valid', function (t) {
 test('invalid', function (t) {
     parse('&%@', function (err, res) {
         t.type(err, 'string');
-        t.equal(res, undefined);
+        t.type(res, 'undefined');
         t.end();
     });
 });

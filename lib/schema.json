@@ -1,5 +1,5 @@
 {
-    "id": "https://scratch.mit.edu",
+    "$id": "https://scratch.mit.edu",
     "description": "Scratch project schema",
     "type": "object",
     "properties": {

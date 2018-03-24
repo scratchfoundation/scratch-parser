@@ -75,9 +75,10 @@ test('invalid string', function (t) {
 });
 
 test('undefined', function (t) {
-    unpack(undefined, function (err, res) {
+    var foo;
+    unpack(foo, function (err, res) {
         t.type(err, 'string');
-        t.equal(res, undefined);
+        t.type(res, 'undefined');
         t.end();
     });
 });
@@ -85,7 +86,7 @@ test('undefined', function (t) {
 test('null', function (t) {
     unpack(null, function (err, obj) {
         t.type(err, 'string');
-        t.equal(obj, undefined);
+        t.type(obj, 'undefined');
         t.end();
     });
 });
@@ -93,7 +94,7 @@ test('null', function (t) {
 test('object', function (t) {
     unpack({}, function (err, obj) {
         t.type(err, 'string');
-        t.equal(obj, undefined);
+        t.type(obj, 'undefined');
         t.end();
     });
 });
