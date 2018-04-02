@@ -16,6 +16,12 @@
                 {"type": "boolean"}
             ]
         },
+        "stringOrNumber": {
+            "oneOf": [
+                {"type": "string"},
+                {"type": "number"}
+            ]
+        },
         "assetId": {
             "type": "string",
             "pattern": "^[a-fA-F0-9]{32}$"
@@ -29,7 +35,7 @@
                 },
                 "dataFormat": {
                     "type": "string",
-                    "enum": ["png", "PNG", "svg", "SVG", "jpeg", "JPEG", "jpg", "JPG", "bmp", "BMP"]
+                    "enum": ["png", "PNG", "svg", "SVG", "jpeg", "JPEG", "jpg", "JPG", "bmp", "BMP", "gif", "GIF"]
                 },
                 "md5ext": {
                     "type": "string",
@@ -87,98 +93,141 @@
             ]
         },
         "scalar_variable": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string",
-                    "enum": ["", "scalar"]
-                },
-                "value": {
-                    "oneOf": [
-                        {"type": "string"},
-                        {"type": "number"}
-                    ]
-                }
-            }
+            "type": "array",
+            "items": [
+                {"type": "string"},
+                {"$ref":"#/definitions/stringOrNumber"}
+            ],
+            "additionalItems": {"type": "boolean", "enum": [true]}
         },
         "list": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string",
-                    "enum": ["list"]
-                },
-                "value": {
-                    "type": "array"
+            "type": "array",
+            "items": [
+                {"type":"string"},
+                {
+                    "type": "array",
+                    "items": {"$ref":"#/definitions/stringOrNumber"}
                 }
-            }
+            ],
+            "additionalItems": false
         },
         "broadcast_message": {
-            "type": "object",
-            "properties": {
-                "name": {
+            "type": "array",
+            "items": {"type": "string"},
+            "additionalItems": false
+        },
+        "num_primitive": {
+            "type": "array",
+            "items": [
+                {
+                    "type": "number",
+                    "enum": [4,9,0]
+                },
+                {
+                    "type": "number"
+                }
+            ],
+            "additionalItems": false
+        },
+        "text_primitive": {
+            "type": "array",
+            "items": [
+                {
+                    "type": "number",
+                    "enum": [5]
+                },
+                {"$ref":"#/definitions/stringOrNumber"}
+            ],
+            "additionalItems": false
+        },
+        "broadcast_primitive": {
+            "type": "array",
+            "items": [
+                {
+                    "type": "number",
+                    "enum": [6]
+                },
+                {
                     "type": "string"
                 },
-                "type": {
-                    "type": "string",
-                    "enum": ["broadcast_msg"]
-                },
-                "value": {
-                    "type": "string",
-                    "not": {"enum": [""]}
+                {
+                    "type": "string"
                 }
+            ],
+            "additionalItems": false
+        },
+        "variable_primitive": {
+            "type": "array",
+            "items": [
+                {
+                    "type": "number",
+                    "enum": [7]
+                },
+                {"$ref":"#/definitions/stringOrNumber"},
+                {"type": "string"}
+            ],
+            "additionalItems": {
+                "type": "number"
             }
+        },
+        "list_primitive": {
+            "type": "array",
+            "items": [
+                {
+                    "type": "number",
+                    "enum": [8]
+                },
+                {
+                    "type": "array",
+                    "items": {"$ref":"#/definitions/stringOrNumber"}
+                },
+                {"type": "string"}
+            ],
+            "additionalItems": {
+                "type": "number"
+            }
+        },
+        "topLevelPrimitive": {
+            "oneOf": [
+                {"$ref":"#/definitions/variable_primitive"},
+                {"$ref":"#/definitions/list_primitive"}
+            ]
+        },
+        "inputPrimitive": {
+            "oneOf": [
+                {"$ref":"#/definitions/num_primitive"},
+                {"$ref":"#/definitions/text_primitive"},
+                {"$ref":"#/definitions/broadcast_primitive"},
+                {"$ref":"#/definitions/variable_primitive"},
+                {"$ref":"#/definitions/list_primitive"}
+            ]
         },
         "block": {
             "type": "object",
             "properties": {
-                "id": {
-                    "type": "string"
-                },
                 "opcode": {
                     "type": "string"
                 },
                 "inputs": {
                     "type": "object",
                     "additionalProperties": {
-                        "type": "object",
-                        "properties": {
-                            "name": {
-                                "type": "string"
-                            },
-                            "block": {"$ref":"#/definitions/optionalString"},
-                            "shadow": {"$ref":"#/definitions/optionalString"},
-                            "value": {
-                                "oneOf": [
-                                    {"type": "string"},
-                                    {"type": "number"}
-                                ]
+                        "type": "array",
+                        "items": [
+                            {
+                                "type":"number",
+                                "enum":[1,2,3]
                             }
+                        ],
+                        "additionalItems": {
+                            "oneOf": [
+                                {"$ref":"#/definitions/optionalString"},
+                                {"$ref":"#/definitions/inputPrimitive"}
+                            ]
                         }
                     }
                 },
                 "fields": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "object",
-                        "properties": {
-                            "name": {
-                                "type": "string"
-                            },
-                            "value": {
-                                "oneOf": [
-                                    {"type": "string"},
-                                    {"type": "number"}
-                                ]
-                            }
-                        }
-                    }
+                    "type": "object"
                 },
                 "next": {"$ref":"#/definitions/optionalString"},
                 "topLevel": {
@@ -216,7 +265,6 @@
                 }
             },
             "required": [
-                "id",
                 "opcode"
             ]
         },
@@ -284,17 +332,21 @@
                 },
                 "blocks": {
                     "type": "object",
-                    "additionalProperties": {"$ref":"#/definitions/block"}
-                },
-                "variables": {
-                    "type": "object",
                     "additionalProperties": {
                         "oneOf": [
-                            {"$ref":"#/definitions/scalar_variable"},
-                            {"$ref":"#/definitions/list"},
-                            {"$ref":"#/definitions/broadcast_message"}
+                            {"$ref":"#/definitions/block"},
+                            {"$ref":"#/definitions/topLevelPrimitive"}
                         ]
                     }
+                },
+                "variables": {
+                    "type": "object"
+                },
+                "lists": {
+                    "type": "object"
+                },
+                "broadcasts": {
+                    "type": "object"
                 },
                 "costumes": {
                     "type": "array",
