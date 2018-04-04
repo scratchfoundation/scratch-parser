@@ -22,6 +22,12 @@
                 {"type": "number"}
             ]
         },
+        "scalarVal": {
+            "oneOf": [
+                {"$ref":"#/definitions/stringOrNumber"},
+                {"type": "boolean"}
+            ]
+        },
         "assetId": {
             "type": "string",
             "pattern": "^[a-fA-F0-9]{32}$"
@@ -96,9 +102,10 @@
             "type": "array",
             "items": [
                 {"type": "string"},
-                {"$ref":"#/definitions/stringOrNumber"}
+                {"$ref":"#/definitions/scalarVal"}
             ],
-            "additionalItems": {"type": "boolean", "enum": [true]}
+            "additionalItems": {"type": "boolean", "enum": [true], "description": "Whether this is a cloud variable"},
+            "maxItems": 3
         },
         "list": {
             "type": "array",
@@ -106,7 +113,7 @@
                 {"type":"string"},
                 {
                     "type": "array",
-                    "items": {"$ref":"#/definitions/stringOrNumber"}
+                    "items": {"$ref":"#/definitions/scalarVal"}
                 }
             ],
             "additionalItems": false
@@ -121,10 +128,22 @@
             "items": [
                 {
                     "type": "number",
-                    "enum": [4,9,0]
+                    "enum": [4,5,6,7,8]
+                },
+                {"$ref":"#/definitions/stringOrNumber"}
+            ],
+            "additionalItems": false
+        },
+        "color_primitive": {
+            "type": "array",
+            "items": [
+                {
+                    "type": "number",
+                    "enum": [9]
                 },
                 {
-                    "type": "number"
+                    "type": "string",
+                    "pattern": "^#[a-fA-F0-9]{6}$"
                 }
             ],
             "additionalItems": false
@@ -134,7 +153,7 @@
             "items": [
                 {
                     "type": "number",
-                    "enum": [5]
+                    "enum": [10]
                 },
                 {"$ref":"#/definitions/stringOrNumber"}
             ],
@@ -145,14 +164,10 @@
             "items": [
                 {
                     "type": "number",
-                    "enum": [6]
+                    "enum": [11]
                 },
-                {
-                    "type": "string"
-                },
-                {
-                    "type": "string"
-                }
+                {"type": "string", "description": "broadcast message"},
+                {"type": "string", "description": "broadcast message id"}
             ],
             "additionalItems": false
         },
@@ -161,31 +176,32 @@
             "items": [
                 {
                     "type": "number",
-                    "enum": [7]
+                    "enum": [12]
                 },
-                {"$ref":"#/definitions/stringOrNumber"},
-                {"type": "string"}
+                {"type": "string", "description": "variable name"},
+                {"type": "string", "description": "variable id"}
             ],
             "additionalItems": {
                 "type": "number"
-            }
+            },
+            "minItems": 3,
+            "maxItems": 5
         },
         "list_primitive": {
             "type": "array",
             "items": [
                 {
                     "type": "number",
-                    "enum": [8]
+                    "enum": [13]
                 },
-                {
-                    "type": "array",
-                    "items": {"$ref":"#/definitions/stringOrNumber"}
-                },
-                {"type": "string"}
+                {"type": "string", "description": "list name"},
+                {"type": "string", "description": "list id"}
             ],
             "additionalItems": {
                 "type": "number"
-            }
+            },
+            "minItems": 3,
+            "maxItems": 5
         },
         "topLevelPrimitive": {
             "oneOf": [
@@ -196,6 +212,7 @@
         "inputPrimitive": {
             "oneOf": [
                 {"$ref":"#/definitions/num_primitive"},
+                {"$ref":"#/definitions/color_primitive"},
                 {"$ref":"#/definitions/text_primitive"},
                 {"$ref":"#/definitions/broadcast_primitive"},
                 {"$ref":"#/definitions/variable_primitive"},
@@ -335,7 +352,7 @@
                     "additionalProperties": {
                         "oneOf": [
                             {"$ref":"#/definitions/block"},
-                            {"$ref":"#/definitions/topLevelPrimitive"}
+                            {"$ref":"#/definitions/inputPrimitive"}
                         ]
                     }
                 },
