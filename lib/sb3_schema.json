@@ -296,8 +296,22 @@
                 "isStage": {
                     "type": "boolean",
                     "enum": [true]
+                },
+                "tempo": {
+                    "type": "number"
+                },
+                "videoTransparency": {
+                    "type": "number"
+                },
+                "videoState": {
+                    "type": "string",
+                    "enum": ["on", "off", "on-flipped"]
                 }
-            }
+            },
+            "required": [
+                "name",
+                "isStage"
+            ]
         },
         "sprite": {
             "type": "object",
@@ -371,10 +385,13 @@
                     "minItems": 1,
                     "uniqueItems": true
                 },
-                "sounds":{
+                "sounds": {
                     "type": "array",
                     "items": {"$ref":"#/definitions/sound"},
                     "uniqueItems": true
+                },
+                "volume": {
+                    "type": "number"
                 }
             },
             "required": [
