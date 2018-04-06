@@ -127,7 +127,10 @@
             "minimum": 0
         },
         "penLayerMD5": {
-            "type": "string"
+            "oneOf":[
+              {"type": "string"},
+              {"type": "null"}
+            ]
         },
         "penLayerID": {
             "type": "number",
@@ -189,11 +192,7 @@
                         "javascriptURL"
                     ]
                 }
-            },
-            "required": [
-                "flashVersion",
-                "swfVersion"
-            ]
+            }
         }
     },
     "required": [
