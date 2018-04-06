@@ -305,7 +305,7 @@
                 },
                 "videoState": {
                     "type": "string",
-                    "enum": ["on", "off", "on-flipped"]
+                    "enum": ["on", "off", "on_flipped"]
                 }
             },
             "required": [
