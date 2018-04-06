@@ -101,8 +101,8 @@
         "scalar_variable": {
             "type": "array",
             "items": [
-                {"type": "string"},
-                {"$ref":"#/definitions/scalarVal"}
+                {"type": "string", "description": "name of the variable"},
+                {"$ref":"#/definitions/scalarVal", "description": "value of the variable"}
             ],
             "additionalItems": {"type": "boolean", "enum": [true], "description": "Whether this is a cloud variable"},
             "maxItems": 3
@@ -110,18 +110,18 @@
         "list": {
             "type": "array",
             "items": [
-                {"type":"string"},
+                {"type":"string", "description": "name of the list"},
                 {
                     "type": "array",
+                    "description": "contents of the list",
                     "items": {"$ref":"#/definitions/scalarVal"}
                 }
             ],
             "additionalItems": false
         },
         "broadcast_message": {
-            "type": "array",
-            "items": {"type": "string"},
-            "additionalItems": false
+            "type": "string",
+            "description": "the message being broadcasted"
         },
         "num_primitive": {
             "type": "array",
@@ -371,13 +371,16 @@
                     }
                 },
                 "variables": {
-                    "type": "object"
+                    "type": "object",
+                    "additionalProperties": {"$ref":"#/definitions/scalar_variable"}
                 },
                 "lists": {
-                    "type": "object"
+                    "type": "object",
+                    "additionalProperties": {"$ref":"#/definitions/list"}
                 },
                 "broadcasts": {
-                    "type": "object"
+                    "type": "object",
+                    "additionalProperties": {"$ref":"#/definitions/broadcast_message"}
                 },
                 "costumes": {
                     "type": "array",
