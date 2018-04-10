@@ -79,7 +79,7 @@
                 },
                 "md5ext": {
                     "type": "string",
-                    "pattern": "^[a-fA-F0-9]{32}.[a-zA-Z]+$"
+                    "pattern": "^[a-fA-F0-9]{32}.[a-zA-Z0-9]+$"
                 },
                 "name": {
                     "type": "string"
