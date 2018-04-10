@@ -368,7 +368,7 @@
                     "additionalProperties": {
                         "oneOf": [
                             {"$ref":"#/definitions/block"},
-                            {"$ref":"#/definitions/inputPrimitive"}
+                            {"$ref":"#/definitions/topLevelPrimitive"}
                         ]
                     }
                 },
