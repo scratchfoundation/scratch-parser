@@ -41,7 +41,7 @@
                 },
                 "dataFormat": {
                     "type": "string",
-                    "enum": ["png", "PNG", "svg", "SVG", "jpeg", "JPEG", "jpg", "JPG", "bmp", "BMP", "gif", "GIF"]
+                    "enum": ["png", "svg", "jpeg", "jpg", "bmp", "gif"]
                 },
                 "md5ext": {
                     "type": "string",
@@ -71,7 +71,7 @@
                 "assetId": { "$ref": "#/definitions/assetId"},
                 "dataFormat": {
                     "type": "string",
-                    "enum": ["wav", "WAV", "wave", "WAVE", "mp3", "MP3"]
+                    "enum": ["wav", "wave", "mp3"]
                 },
                 "format": {
                     "type": "string",
@@ -129,6 +129,7 @@
                 {
                     "type": "number",
                     "enum": [4,5,6,7,8]
+
                 },
                 {"$ref":"#/definitions/stringOrNumber"}
             ],
@@ -232,7 +233,8 @@
                         "items": [
                             {
                                 "type":"number",
-                                "enum":[1,2,3]
+                                "enum":[1,2,3],
+                                "description": "1 = unobscured shadow, 2 = no shadow, 3 = obscured shadow"
                             }
                         ],
                         "additionalItems": {
