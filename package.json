@@ -10,6 +10,7 @@
     "url": "https://github.com/LLK/scratch-parser.git"
   },
   "scripts": {
+    "commitmsg": "commitlint -e $GIT_PARAMS",
     "test:lint": "eslint . --ext=js",
     "test:unit": "tap test/unit/*.js",
     "test:integration": "tap test/integration/*.js",
@@ -25,12 +26,16 @@
     "gzip-js": "0.3.2"
   },
   "devDependencies": {
+    "@commitlint/cli": "6.1.0",
+    "@commitlint/config-conventional": "6.1.0",
+    "@commitlint/travis-cli": "6.1.0",
     "babel-eslint": "8.2.2",
     "benchmark": "^2.1.1",
     "cz-conventional-changelog": "^2.1.0",
     "eslint": "^4.19.1",
     "eslint-config-scratch": "5.0.0",
     "glob": "^7.0.6",
+    "husky": "0.14.3",
     "semantic-release": "^15.1.4",
     "tap": "^11.1.3"
   },
