@@ -16,6 +16,18 @@
                 {"type": "boolean"}
             ]
         },
+        "stringOrNumber": {
+            "oneOf": [
+                {"type": "string"},
+                {"type": "number"}
+            ]
+        },
+        "scalarVal": {
+            "oneOf": [
+                {"$ref":"#/definitions/stringOrNumber"},
+                {"type": "boolean"}
+            ]
+        },
         "assetId": {
             "type": "string",
             "pattern": "^[a-fA-F0-9]{32}$"
@@ -29,7 +41,7 @@
                 },
                 "dataFormat": {
                     "type": "string",
-                    "enum": ["png", "PNG", "svg", "SVG", "jpeg", "JPEG", "jpg", "JPG", "bmp", "BMP"]
+                    "enum": ["png", "svg", "jpeg", "jpg", "bmp", "gif"]
                 },
                 "md5ext": {
                     "type": "string",
@@ -59,7 +71,7 @@
                 "assetId": { "$ref": "#/definitions/assetId"},
                 "dataFormat": {
                     "type": "string",
-                    "enum": ["wav", "WAV", "wave", "WAVE", "mp3", "MP3"]
+                    "enum": ["wav", "wave", "mp3"]
                 },
                 "format": {
                     "type": "string",
@@ -67,7 +79,7 @@
                 },
                 "md5ext": {
                     "type": "string",
-                    "pattern": "^[a-fA-F0-9]{32}.[a-zA-Z]+$"
+                    "pattern": "^[a-fA-F0-9]{32}.[a-zA-Z0-9]+$"
                 },
                 "name": {
                     "type": "string"
@@ -87,98 +99,153 @@
             ]
         },
         "scalar_variable": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string",
-                    "enum": ["", "scalar"]
-                },
-                "value": {
-                    "oneOf": [
-                        {"type": "string"},
-                        {"type": "number"}
-                    ]
-                }
-            }
+            "type": "array",
+            "items": [
+                {"type": "string", "description": "name of the variable"},
+                {"$ref":"#/definitions/scalarVal", "description": "value of the variable"}
+            ],
+            "additionalItems": {"type": "boolean", "enum": [true], "description": "Whether this is a cloud variable"},
+            "maxItems": 3
         },
         "list": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string",
-                    "enum": ["list"]
-                },
-                "value": {
-                    "type": "array"
+            "type": "array",
+            "items": [
+                {"type":"string", "description": "name of the list"},
+                {
+                    "type": "array",
+                    "description": "contents of the list",
+                    "items": {"$ref":"#/definitions/scalarVal"}
                 }
-            }
+            ],
+            "additionalItems": false
         },
         "broadcast_message": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string"
+            "type": "string",
+            "description": "the message being broadcasted"
+        },
+        "num_primitive": {
+            "type": "array",
+            "items": [
+                {
+                    "type": "number",
+                    "enum": [4,5,6,7,8]
                 },
-                "type": {
-                    "type": "string",
-                    "enum": ["broadcast_msg"]
+                {"$ref":"#/definitions/stringOrNumber"}
+            ],
+            "additionalItems": false
+        },
+        "color_primitive": {
+            "type": "array",
+            "items": [
+                {
+                    "type": "number",
+                    "enum": [9]
                 },
-                "value": {
+                {
                     "type": "string",
-                    "not": {"enum": [""]}
+                    "pattern": "^#[a-fA-F0-9]{6}$"
                 }
-            }
+            ],
+            "additionalItems": false
+        },
+        "text_primitive": {
+            "type": "array",
+            "items": [
+                {
+                    "type": "number",
+                    "enum": [10]
+                },
+                {"$ref":"#/definitions/stringOrNumber"}
+            ],
+            "additionalItems": false
+        },
+        "broadcast_primitive": {
+            "type": "array",
+            "items": [
+                {
+                    "type": "number",
+                    "enum": [11]
+                },
+                {"type": "string", "description": "broadcast message"},
+                {"type": "string", "description": "broadcast message id"}
+            ],
+            "additionalItems": false
+        },
+        "variable_primitive": {
+            "type": "array",
+            "items": [
+                {
+                    "type": "number",
+                    "enum": [12]
+                },
+                {"type": "string", "description": "variable name"},
+                {"type": "string", "description": "variable id"}
+            ],
+            "additionalItems": {
+                "type": "number"
+            },
+            "minItems": 3,
+            "maxItems": 5
+        },
+        "list_primitive": {
+            "type": "array",
+            "items": [
+                {
+                    "type": "number",
+                    "enum": [13]
+                },
+                {"type": "string", "description": "list name"},
+                {"type": "string", "description": "list id"}
+            ],
+            "additionalItems": {
+                "type": "number"
+            },
+            "minItems": 3,
+            "maxItems": 5
+        },
+        "topLevelPrimitive": {
+            "oneOf": [
+                {"$ref":"#/definitions/variable_primitive"},
+                {"$ref":"#/definitions/list_primitive"}
+            ]
+        },
+        "inputPrimitive": {
+            "oneOf": [
+                {"$ref":"#/definitions/num_primitive"},
+                {"$ref":"#/definitions/color_primitive"},
+                {"$ref":"#/definitions/text_primitive"},
+                {"$ref":"#/definitions/broadcast_primitive"},
+                {"$ref":"#/definitions/variable_primitive"},
+                {"$ref":"#/definitions/list_primitive"}
+            ]
         },
         "block": {
             "type": "object",
             "properties": {
-                "id": {
-                    "type": "string"
-                },
                 "opcode": {
                     "type": "string"
                 },
                 "inputs": {
                     "type": "object",
                     "additionalProperties": {
-                        "type": "object",
-                        "properties": {
-                            "name": {
-                                "type": "string"
-                            },
-                            "block": {"$ref":"#/definitions/optionalString"},
-                            "shadow": {"$ref":"#/definitions/optionalString"},
-                            "value": {
-                                "oneOf": [
-                                    {"type": "string"},
-                                    {"type": "number"}
-                                ]
+                        "type": "array",
+                        "items": [
+                            {
+                                "type":"number",
+                                "enum":[1,2,3],
+                                "description": "1 = unobscured shadow, 2 = no shadow, 3 = obscured shadow"
                             }
+                        ],
+                        "additionalItems": {
+                            "oneOf": [
+                                {"$ref":"#/definitions/optionalString"},
+                                {"$ref":"#/definitions/inputPrimitive"}
+                            ]
                         }
                     }
                 },
                 "fields": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "object",
-                        "properties": {
-                            "name": {
-                                "type": "string"
-                            },
-                            "value": {
-                                "oneOf": [
-                                    {"type": "string"},
-                                    {"type": "number"}
-                                ]
-                            }
-                        }
-                    }
+                    "type": "object"
                 },
                 "next": {"$ref":"#/definitions/optionalString"},
                 "topLevel": {
@@ -216,7 +283,6 @@
                 }
             },
             "required": [
-                "id",
                 "opcode"
             ]
         },
@@ -231,8 +297,22 @@
                 "isStage": {
                     "type": "boolean",
                     "enum": [true]
+                },
+                "tempo": {
+                    "type": "number"
+                },
+                "videoTransparency": {
+                    "type": "number"
+                },
+                "videoState": {
+                    "type": "string",
+                    "enum": ["on", "off", "on-flipped"]
                 }
-            }
+            },
+            "required": [
+                "name",
+                "isStage"
+            ]
         },
         "sprite": {
             "type": "object",
@@ -284,17 +364,24 @@
                 },
                 "blocks": {
                     "type": "object",
-                    "additionalProperties": {"$ref":"#/definitions/block"}
+                    "additionalProperties": {
+                        "oneOf": [
+                            {"$ref":"#/definitions/block"},
+                            {"$ref":"#/definitions/topLevelPrimitive"}
+                        ]
+                    }
                 },
                 "variables": {
                     "type": "object",
-                    "additionalProperties": {
-                        "oneOf": [
-                            {"$ref":"#/definitions/scalar_variable"},
-                            {"$ref":"#/definitions/list"},
-                            {"$ref":"#/definitions/broadcast_message"}
-                        ]
-                    }
+                    "additionalProperties": {"$ref":"#/definitions/scalar_variable"}
+                },
+                "lists": {
+                    "type": "object",
+                    "additionalProperties": {"$ref":"#/definitions/list"}
+                },
+                "broadcasts": {
+                    "type": "object",
+                    "additionalProperties": {"$ref":"#/definitions/broadcast_message"}
                 },
                 "costumes": {
                     "type": "array",
@@ -302,10 +389,13 @@
                     "minItems": 1,
                     "uniqueItems": true
                 },
-                "sounds":{
+                "sounds": {
                     "type": "array",
                     "items": {"$ref":"#/definitions/sound"},
                     "uniqueItems": true
+                },
+                "volume": {
+                    "type": "number"
                 }
             },
             "required": [
