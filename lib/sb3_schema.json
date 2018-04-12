@@ -45,7 +45,7 @@
                 },
                 "md5ext": {
                     "type": "string",
-                    "pattern": "^[a-fA-F0-9]{32}.[a-zA-Z]+$"
+                    "pattern": "^[a-fA-F0-9]{32}\\.[a-zA-Z]+$"
                 },
                 "name": {
                     "type": "string"
@@ -79,7 +79,7 @@
                 },
                 "md5ext": {
                     "type": "string",
-                    "pattern": "^[a-fA-F0-9]{32}.[a-zA-Z0-9]+$"
+                    "pattern": "^[a-fA-F0-9]{32}\\.[a-zA-Z0-9]+$"
                 },
                 "name": {
                     "type": "string"
@@ -413,11 +413,11 @@
             "properties": {
                 "semver": {
                     "type": "string",
-                    "pattern": "^(3.[0-9]+.[0-9]+)$"
+                    "pattern": "^(3\\.[0-9]+\\.[0-9]+)$"
                 },
                 "vm": {
                     "type": "string",
-                    "pattern": "^([0-9]+.[0-9]+.[0-9]+)($|-)"
+                    "pattern": "^([0-9]+\\.[0-9]+\\.[0-9]+)($|-)"
                 },
                 "agent": {
                     "type": "string"
