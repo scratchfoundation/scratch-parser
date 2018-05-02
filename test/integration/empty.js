@@ -4,7 +4,7 @@ var data = require('../fixtures/data');
 var parser = require('../../index');
 
 test('sb', function (t) {
-    parser(data.empty.sb, function (err, res) {
+    parser(data.empty.sb, false, function (err, res) {
         t.type(err, 'string');
         t.type(res, 'undefined');
         t.end();
@@ -12,7 +12,7 @@ test('sb', function (t) {
 });
 
 test('sb2', function (t) {
-    parser(data.empty.sb2, function (err, result) {
+    parser(data.empty.sb2, false, function (err, result) {
         t.equal(err, null);
         t.equal(Array.isArray(result), true);
         var res = result[0];
@@ -25,7 +25,7 @@ test('sb2', function (t) {
 });
 
 test('json', function (t) {
-    parser(data.empty.json, function (err, result) {
+    parser(data.empty.json, false, function (err, result) {
         t.equal(err, null);
         t.equal(Array.isArray(result), true);
         var res = result[0];
@@ -38,7 +38,7 @@ test('json', function (t) {
 });
 
 test('json string', function (t) {
-    parser(data.empty.json.toString('utf-8'), function (err, result) {
+    parser(data.empty.json.toString('utf-8'), false, function (err, result) {
         t.equal(err, null);
         t.equal(Array.isArray(result), true);
         var res = result[0];
@@ -51,7 +51,7 @@ test('json string', function (t) {
 });
 
 test('gzipped json', function (t) {
-    parser(data.empty.gzipJson, function (err, result) {
+    parser(data.empty.gzipJson, false, function (err, result) {
         t.equal(err, null);
         t.equal(Array.isArray(result), true);
         var res = result[0];

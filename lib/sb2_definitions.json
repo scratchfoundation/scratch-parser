@@ -108,6 +108,10 @@
                 "currentCostumeIndex"
             ]
         },
+        "stage_child": {
+            "type": "object",
+            "description": "A child of the stage, can be a sprite or a monitor"
+        },
         "stage_object" : {
             "type": "object",
             "properties": {
@@ -175,7 +179,7 @@
                 },
                 "children": {
                     "type": "array",
-                    "items": {"$ref": "#/definitions/sprite_object"}
+                    "items": {"$ref": "#/definitions/stage_child"}
                 }
             },
             "required": [
