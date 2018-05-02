@@ -1,10 +1,9 @@
 {
-    "$id": "https://scratch.mit.edu/sb2_schema.json",
-    "$schema": "http://json-schema.org/schema#",
+    "$id": "https://scratch.mit.edu/sprite2_schema.json",
     "description": "Scratch 2.0 project schema",
     "type": "object",
     "allOf": [
-        {"$ref": "sb2_definitions.json#/definitions/stage_object"},
+        {"$ref": "sb2_definitions.json#/definitions/sprite_object"},
         {
             "type": "object",
             "properties": {

@@ -1,0 +1,191 @@
+{
+    "$id": "https://scratch.mit.edu/sb2_definitions.json",
+    "$schema": "http://json-schema.org/schema#",
+    "description": "Scratch 2.0 Project and Sprite Definitions",
+    "definitions": {
+        "scripts": {
+            "type": "array"
+        },
+        "sounds": {
+            "type": "array",
+            "properties": {
+                "soundName": {
+                    "type": "string"
+                },
+                "soundID": {
+                    "type": "number"
+                },
+                "md5": {
+                    "type": "string"
+                },
+                "sampleCount": {
+                    "type": "number"
+                },
+                "rate": {
+                    "type": "number"
+                },
+                "format": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "soundName",
+                "soundID",
+                "md5",
+                "sampleCount",
+                "rate",
+                "format"
+            ]
+        },
+        "costumes": {
+            "type": "array",
+            "properties": {
+                "costumeName": {
+                    "type": "string"
+                },
+                "baseLayerID": {
+                    "type": "number"
+                },
+                "baseLayerMD5": {
+                    "type": "string"
+                },
+                "bitmapResolution": {
+                    "type": "number"
+                },
+                "rotationCenterX": {
+                    "type": "number"
+                },
+                "rotationCenterY": {
+                    "type": "number"
+                }
+            },
+            "required": [
+                "costumeName",
+                "baseLayerID",
+                "baseLayerMD5",
+                "bitmapResolution",
+                "rotationCenterX",
+                "rotationCenterY"
+            ]
+        },
+        "variables": {
+            "type": "array",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                },
+                "isPersistent": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "name",
+                "value"
+            ]
+        },
+        "sprite_object": {
+            "type": "object",
+            "properties": {
+                "objName": {
+                    "type": "string"
+                },
+                "variables": {"$ref": "#/definitions/variables"},
+                "sounds": {"$ref":"#/definitions/sounds"},
+                "costumes": {"$ref":"#/definitions/costumes"},
+                "currentCostumeIndex": {
+                    "type": "number",
+                    "minimum": 0
+                }
+            },
+            "additionalProperties": true,
+            "required": [
+                "objName",
+                "sounds",
+                "costumes",
+                "currentCostumeIndex"
+            ]
+        },
+        "stage_object" : {
+            "type": "object",
+            "properties": {
+                "objName": {
+                    "type": "string"
+                },
+                "variables": {"$ref": "#/definitions/variables"},
+                "lists": {
+                    "type": "array",
+                    "properties": {
+                        "listName": {
+                            "type": "string"
+                        },
+                        "contents": {
+                            "type": "array"
+                        },
+                        "isPersistent": {
+                            "type": "boolean"
+                        },
+                        "x": {
+                            "type": "number"
+                        },
+                        "y": {
+                            "type": "number"
+                        },
+                        "width": {
+                            "type": "number"
+                        },
+                        "height": {
+                            "type": "number"
+                        },
+                        "visible": {
+                            "type": "boolean"
+                        }
+                    },
+                    "required": [
+                        "listName",
+                        "contents"
+                    ]
+                },
+                "scripts": {"$ref": "#/definitions/scripts"},
+                "sounds": {"$ref": "#/definitions/sounds"},
+                "costumes": {"$ref": "#/definitions/costumes"},
+                "currentCostumeIndex": {
+                    "type": "number",
+                    "minimum": 0
+                },
+                "penLayerMD5": {
+                    "oneOf":[
+                      {"type": "string"},
+                      {"type": "null"}
+                    ]
+                },
+                "penLayerID": {
+                    "type": "number",
+                    "minimum": -1
+                },
+                "tempoBPM": {
+                    "type": "number"
+                },
+                "videoAlpha": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                },
+                "children": {
+                    "type": "array",
+                    "items": {"$ref": "#/definitions/sprite_object"}
+                }
+            },
+            "required": [
+                "objName",
+                "costumes",
+                "currentCostumeIndex",
+                "penLayerMD5",
+                "tempoBPM",
+                "children"
+            ]
+        }
+    }
+}
