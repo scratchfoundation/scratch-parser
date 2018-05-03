@@ -21,7 +21,7 @@ test('spec', function (t) {
 
 test('sb', function (t) {
     var buffer = new Buffer(fixtures.sb);
-    unpack(buffer, function (err, res) {
+    unpack(buffer, false, function (err, res) {
         t.type(err, 'string');
         t.type(res, 'undefined');
         t.end();
@@ -30,7 +30,7 @@ test('sb', function (t) {
 
 test('sb2', function (t) {
     var buffer = new Buffer(fixtures.sb2);
-    unpack(buffer, function (err, res) {
+    unpack(buffer, false, function (err, res) {
         t.equal(err, null);
         t.equal(Array.isArray(res), true);
         t.type(res[0], 'string');
@@ -42,9 +42,18 @@ test('sb2', function (t) {
     });
 });
 
+test('sb2 does not validate as sprite', function (t) {
+    var buffer = new Buffer(fixtures.sb2);
+    unpack(buffer, true, function (err, res) {
+        t.type(err, 'string');
+        t.type(res, 'undefined');
+        t.end();
+    });
+});
+
 test('json', function (t) {
     var buffer = new Buffer(fixtures.json);
-    unpack(buffer, function (err, res) {
+    unpack(buffer, false, function (err, res) {
         t.equal(err, null);
         t.equal(Array.isArray(res), true);
         t.type(res[0], 'string');
@@ -58,7 +67,7 @@ test('json', function (t) {
 
 test('json utf-8 string', function (t) {
     var buffer = new Buffer(fixtures.json);
-    unpack(buffer.toString('utf-8'), function (err, res) {
+    unpack(buffer.toString('utf-8'), false, function (err, res) {
         t.equal(err, null);
         t.equal(Array.isArray(res), true);
         t.type(res[0], 'string');
@@ -71,7 +80,16 @@ test('json utf-8 string', function (t) {
 });
 
 test('invalid string', function (t) {
-    unpack('this is not json', function (err, res) {
+    unpack('this is not json', false, function (err, res) {
+        t.equal(err, null);
+        t.equal(Array.isArray(res), true);
+        t.type(res[0], 'string');
+        t.throws(function () {
+            JSON.parse(res[0]);
+        });
+        t.equal(res[1], null);
+    });
+    unpack('this is not json', true, function (err, res) {
         t.equal(err, null);
         t.equal(Array.isArray(res), true);
         t.type(res[0], 'string');
@@ -85,7 +103,7 @@ test('invalid string', function (t) {
 
 test('undefined', function (t) {
     var foo;
-    unpack(foo, function (err, res) {
+    unpack(false, foo, function (err, res) {
         t.type(err, 'string');
         t.type(res, 'undefined');
         t.end();
@@ -93,7 +111,7 @@ test('undefined', function (t) {
 });
 
 test('null', function (t) {
-    unpack(null, function (err, obj) {
+    unpack(false, null, function (err, obj) {
         t.type(err, 'string');
         t.type(obj, 'undefined');
         t.end();
@@ -101,7 +119,7 @@ test('null', function (t) {
 });
 
 test('object', function (t) {
-    unpack({}, function (err, obj) {
+    unpack(false, {}, function (err, obj) {
         t.type(err, 'string');
         t.type(obj, 'undefined');
         t.end();

@@ -18,6 +18,8 @@ for (var i in fixtures) {
     fixtures[i] = fs.readFileSync(fixtures[i]);
 }
 
+var errorMessage = 'Failed to unzip and extract project.json';
+
 test('spec', function (t) {
     t.type(unzip, 'function');
     t.end();
@@ -25,9 +27,8 @@ test('spec', function (t) {
 
 test('sb', function (t) {
     var buffer = new Buffer(fixtures.sb);
-    unzip(buffer, false, function (err, res) {
+    unzip(buffer, false, false, function (err, res) {
         t.type(err, 'string');
-        var errorMessage = 'Failed to unzip and extract project.json';
         t.equal(err.startsWith(errorMessage), true);
         t.type(res, 'undefined');
         t.end();
@@ -36,7 +37,7 @@ test('sb', function (t) {
 
 test('sb2', function (t) {
     var buffer = new Buffer(fixtures.sb2);
-    unzip(buffer, false, function (err, res) {
+    unzip(buffer, false, false, function (err, res) {
         t.equal(err, null);
         t.equal(Array.isArray(res), true);
         t.type(res[0], 'string');
@@ -50,7 +51,7 @@ test('sb2', function (t) {
 
 test('gzipped JSON', function (t) {
     var buffer = new Buffer(fixtures.gzipJSON);
-    unzip(buffer, true, function (err, res) {
+    unzip(buffer, true, false, function (err, res) {
         t.equal(err, null);
         t.equal(Array.isArray(res), true);
         t.type(res[0], 'string');
@@ -64,9 +65,8 @@ test('gzipped JSON', function (t) {
 
 test('zip without project json', function (t) {
     var buffer = new Buffer(fixtures.zipNoProjectJSON);
-    unzip(buffer, false, function (err, res) {
+    unzip(buffer, false, false, function (err, res) {
         t.type(err, 'string');
-        var errorMessage = 'Failed to unzip and extract project.json';
         t.equal(err.startsWith(errorMessage), true);
         t.type(res, 'undefined');
         t.end();
@@ -75,7 +75,7 @@ test('zip without project json', function (t) {
 
 test('zip with fake project json', function (t) {
     var buffer = new Buffer(fixtures.zipFakeProjectJSON);
-    unzip(buffer, false, function (err, res) {
+    unzip(buffer, false, false, function (err, res) {
         t.equal(err, null);
         t.equal(Array.isArray(res), true);
         t.type(res[0], 'string');
@@ -88,20 +88,38 @@ test('zip with fake project json', function (t) {
     });
 });
 
-test('random string instead of zip #1', function (t) {
-    unzip('this is not a zip', false, function (err, res) {
+var randomString = 'this is not a zip';
+
+test('random string instead of zip, whole project', function (t) {
+    unzip(randomString, false, false, function (err, res) {
         t.type(err, 'string');
-        var errorMessage = 'Failed to unzip and extract project.json';
         t.equal(err.startsWith(errorMessage), true);
         t.type(res, 'undefined');
         t.end();
     });
 });
 
-test('random string instead of zip #2', function (t) {
-    unzip('this is not a zip', true, function (err, res) {
+test('random string instead of zip, sprite', function (t) {
+    unzip(randomString, false, true, function (err, res) {
         t.type(err, 'string');
-        var errorMessage = 'Failed to unzip and extract project.json';
+        t.equal(err.startsWith(errorMessage), true);
+        t.type(res, 'undefined');
+        t.end();
+    });
+});
+
+test('random string instead of gzip, whole project ', function (t) {
+    unzip(randomString, true, false, function (err, res) {
+        t.type(err, 'string');
+        t.equal(err.startsWith(errorMessage), true);
+        t.type(res, 'undefined');
+        t.end();
+    });
+});
+
+test('random string instead of gzip, sprite', function (t) {
+    unzip(randomString, true, true, function (err, res) {
+        t.type(err, 'string');
         t.equal(err.startsWith(errorMessage), true);
         t.type(res, 'undefined');
         t.end();
@@ -110,9 +128,8 @@ test('random string instead of zip #2', function (t) {
 
 test('undefined', function (t) {
     var foo;
-    unzip(foo, false, function (err, obj) {
+    unzip(foo, false, false, function (err, obj) {
         t.type(err, 'string');
-        var errorMessage = 'Failed to unzip and extract project.json';
         t.equal(err.startsWith(errorMessage), true);
         t.type(obj, 'undefined');
         t.end();
@@ -121,49 +138,80 @@ test('undefined', function (t) {
 
 test('undefined isGZip', function (t) {
     var foo;
-    unzip(foo, true, function (err, obj) {
+    unzip(foo, true, false, function (err, obj) {
         t.type(err, 'string');
-        var errorMessage = 'Failed to unzip and extract project.json';
         t.equal(err.startsWith(errorMessage), true);
         t.type(obj, 'undefined');
         t.end();
     });
 });
 
-test('null', function (t) {
-    unzip(null, false, function (err, obj) {
+test('null instead of zip, whole project', function (t) {
+    unzip(null, false, false, function (err, obj) {
         t.type(err, 'string');
-        var errorMessage = 'Failed to unzip and extract project.json';
         t.equal(err.startsWith(errorMessage), true);
         t.type(obj, 'undefined');
         t.end();
     });
 });
 
-test('null isGZip', function (t) {
-    unzip(null, true, function (err, obj) {
+test('null instead of zip, sprite', function (t) {
+    unzip(null, false, true, function (err, obj) {
         t.type(err, 'string');
-        var errorMessage = 'Failed to unzip and extract project.json';
         t.equal(err.startsWith(errorMessage), true);
         t.type(obj, 'undefined');
         t.end();
     });
 });
 
-test('object', function (t) {
-    unzip({}, false, function (err, obj) {
+test('null instead of gzip, whole project', function (t) {
+    unzip(null, true, false, function (err, obj) {
         t.type(err, 'string');
-        var errorMessage = 'Failed to unzip and extract project.json';
         t.equal(err.startsWith(errorMessage), true);
         t.type(obj, 'undefined');
         t.end();
     });
 });
 
-test('object isGZip', function (t) {
-    unzip({}, true, function (err, obj) {
+test('null instead of gzip, sprite', function (t) {
+    unzip(null, true, true, function (err, obj) {
         t.type(err, 'string');
-        var errorMessage = 'Failed to unzip and extract project.json';
+        t.equal(err.startsWith(errorMessage), true);
+        t.type(obj, 'undefined');
+        t.end();
+    });
+});
+
+test('object instead of zip, whole project', function (t) {
+    unzip({}, false, false, function (err, obj) {
+        t.type(err, 'string');
+        t.equal(err.startsWith(errorMessage), true);
+        t.type(obj, 'undefined');
+        t.end();
+    });
+});
+
+test('object instead of zip, sprite', function (t) {
+    unzip({}, false, true, function (err, obj) {
+        t.type(err, 'string');
+        t.equal(err.startsWith(errorMessage), true);
+        t.type(obj, 'undefined');
+        t.end();
+    });
+});
+
+test('object instead of gzip, whole project', function (t) {
+    unzip({}, true, false, function (err, obj) {
+        t.type(err, 'string');
+        t.equal(err.startsWith(errorMessage), true);
+        t.type(obj, 'undefined');
+        t.end();
+    });
+});
+
+test('object instead of gzip, sprite', function (t) {
+    unzip({}, true, false, function (err, obj) {
+        t.type(err, 'string');
         t.equal(err.startsWith(errorMessage), true);
         t.type(obj, 'undefined');
         t.end();
