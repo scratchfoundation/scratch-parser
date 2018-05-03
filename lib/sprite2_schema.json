@@ -7,46 +7,15 @@
         {
             "type": "object",
             "properties": {
-                "info": {
-                    "type": "object",
-                    "properties": {
-                        "flashVersion": {
-                            "type": "string"
-                        },
-                        "swfVersion": {
-                            "type": "string"
-                        },
-                        "userAgent": {
-                            "type": "string"
-                        },
-                        "videoOn": {
-                            "type": "boolean"
-                        },
-                        "savedExtensions": {
-                            "type": "array",
-                            "properties": {
-                                "extensionName": {
-                                    "type": "string"
-                                },
-                                "blockSpecs": {
-                                    "type": "array"
-                                },
-                                "menus": {
-                                    "type": "object"
-                                },
-                                "javascriptURL": {
-                                    "type": "string"
-                                }
-                            },
-                            "required": [
-                                "extensionName",
-                                "blockSpecs",
-                                "menus",
-                                "javascriptURL"
-                            ]
-                        }
-                    }
-                }
+                "scratchX": {"type": "number"},
+                "scratchY": {"type": "number"},
+                "scale": {"type": "number"},
+                "direction": {"type": "number"},
+                "rotationStyle": {"type": "string"},
+                "isDraggable": {"type": "boolean"},
+                "indexInLibrary": {"type": "number"},
+                "visible": {"type": "boolean"},
+                "spriteInfo": {"type": "object"}
             }
         }
     ]

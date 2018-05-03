@@ -7,10 +7,32 @@ test('spec', function (t) {
     t.end();
 });
 
-test('valid', function (t) {
+test('valid sb2 project', function (t) {
     validate(false, JSON.parse(data.example.json), function (err, res) {
         t.equal(err, null);
         t.type(res, 'object');
+        t.end();
+    });
+});
+
+test('valid sprite2', function (t) {
+    validate(true, JSON.parse(data.sprites.default_cat_sprite2_json), function (err, res) {
+        t.equal(err, null);
+        t.type(res, 'object');
+        t.end();
+    });
+});
+
+// Note, the way the sb2/sprite2 validation is written, a valid sb2 project can actually
+// validate as a sprite2 file. The opposite should not be true.
+
+test('valid sprite2 is not a valid project', function (t) {
+    validate(false, JSON.parse(data.sprites.default_cat_sprite2_json), function (err, res) {
+        t.type(err, 'object');
+        t.type(err.validationError, 'string');
+        var sb2Errs = err.sb2Errors;
+        t.equal(Array.isArray(sb2Errs), true);
+        t.type(res, 'undefined');
         t.end();
     });
 });
