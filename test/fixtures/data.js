@@ -37,7 +37,8 @@ module.exports = {
         default_cat_sprite2: fs.readFileSync(path.resolve(__dirname, './data/_default_cat.sprite2')),
         default_cat_sprite2_json: fs.readFileSync(path.resolve(__dirname, './data/_default_cat.sprite2json')),
         example_sprite2: fs.readFileSync(path.resolve(__dirname, './data/_example_sprite.sprite2')),
-        example_sprite2_json: fs.readFileSync(path.resolve(__dirname, './data/_example_sprite.sprite2json'))
+        example_sprite2_json: fs.readFileSync(path.resolve(__dirname, './data/_example_sprite.sprite2json')),
+        bananas_sprite2: fs.readFileSync(path.resolve(__dirname, './data/_bananas.sprite2'))
     },
     sb: sb,
     sb2: sb2,

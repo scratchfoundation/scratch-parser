@@ -103,7 +103,6 @@
             "additionalProperties": true,
             "required": [
                 "objName",
-                "sounds",
                 "costumes",
                 "currentCostumeIndex"
             ]
