@@ -288,7 +288,10 @@
             "type": "object",
             "properties": {
                 "blockId": {"$ref": "#/definitions/optionalString"},
-                "text": {"type": "string"},
+                "text": {
+                    "type": "string",
+                    "maxLength": 8000
+                },
                 "minimized": {"type": "boolean"},
                 "x": {"type": "number"},
                 "y": {"type": "number"},
