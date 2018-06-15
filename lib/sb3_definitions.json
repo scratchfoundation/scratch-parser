@@ -220,6 +220,9 @@
                 "opcode": {
                     "type": "string"
                 },
+                "comment": {
+                    "type": "string"
+                },
                 "inputs": {
                     "type": "object",
                     "additionalProperties": {
@@ -279,6 +282,21 @@
             },
             "required": [
                 "opcode"
+            ]
+        },
+        "comment": {
+            "type": "object",
+            "properties": {
+                "blockId": {"$ref": "#/definitions/optionalString"},
+                "text": {"type": "string"},
+                "minimized": {"type": "boolean"},
+                "x": {"type": "number"},
+                "y": {"type": "number"},
+                "width": {"type": "number"},
+                "height": {"type": "number"}
+            },
+            "required": [
+                "text"
             ]
         },
         "stage": {
@@ -377,6 +395,10 @@
                 "broadcasts": {
                     "type": "object",
                     "additionalProperties": {"$ref":"#/definitions/broadcast_message"}
+                },
+                "comments": {
+                    "type": "object",
+                    "additionalProperties": {"$ref": "#/definitions/comment"}
                 },
                 "costumes": {
                     "type": "array",
