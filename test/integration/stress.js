@@ -32,7 +32,7 @@ test('sb2', function (t) {
 
 test('json', function (t) {
     var set = data.json;
-    t.plan(set.length * 5);
+    t.plan(set.length * 6);
     for (var i in data.json) {
         parser(data.json[i], false, function (err, result) {
             t.equal(err, null);
@@ -40,7 +40,12 @@ test('json', function (t) {
             var res = result[0];
             var possibleZip = result[1];
             t.type(res, 'object');
-            t.type(res.info, 'object');
+            t.type(res.projectVersion, 'number');
+            if (res.projectVersion === 2) {
+                t.type(res.info, 'object');
+            } else if (res.projectVersion === 3) {
+                t.type(res.info, 'undefined');
+            }
             t.equal(possibleZip, null);
         });
     }
@@ -48,7 +53,7 @@ test('json', function (t) {
 
 test('json string', function (t) {
     var set = data.json;
-    t.plan(set.length * 5);
+    t.plan(set.length * 6);
     for (var i in data.json) {
         parser(data.json[i].toString('utf-8'), false, function (err, result) {
             t.equal(err, null);
@@ -56,7 +61,12 @@ test('json string', function (t) {
             var res = result[0];
             var possibleZip = result[1];
             t.type(res, 'object');
-            t.type(res.info, 'object');
+            t.type(res.projectVersion, 'number');
+            if (res.projectVersion === 2) {
+                t.type(res.info, 'object');
+            } else if (res.projectVersion === 3) {
+                t.type(res.info, 'undefined');
+            }
             t.equal(possibleZip, null);
         });
     }

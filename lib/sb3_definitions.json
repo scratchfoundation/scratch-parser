@@ -323,6 +323,11 @@
                 "videoState": {
                     "type": "string",
                     "enum": ["on", "off", "on-flipped"]
+                },
+                "layerOrder": {
+                    "type": "integer",
+                    "enum": [0],
+                    "description": "The layer order of the stage should be 0, if specified."
                 }
             },
             "required": [
@@ -363,6 +368,11 @@
                 "rotationStyle": {
                     "type": "string",
                     "enum": ["all around", "don't rotate", "left-right"]
+                },
+                "layerOrder": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "description": "The layer order of a sprite should be a positive number, if specified."
                 }
             },
             "required": [
