@@ -1,0 +1,269 @@
+{
+  "targets": [
+    {
+      "isStage": true,
+      "name": "Stage",
+      "variables": {},
+      "lists": {},
+      "broadcasts": {},
+      "blocks": {},
+      "comments": {},
+      "currentCostume": 0,
+      "costumes": [
+        {
+          "assetId": "797b03bdb8cf6ccfc30c0692d533d998",
+          "name": "backdrop1",
+          "bitmapResolution": 2,
+          "md5ext": "797b03bdb8cf6ccfc30c0692d533d998.png",
+          "dataFormat": "png",
+          "rotationCenterX": 480,
+          "rotationCenterY": 360
+        }
+      ],
+      "sounds": [
+        {
+          "assetId": "83a9787d4cb6f3b7632b4ddfebf74367",
+          "name": "pop",
+          "dataFormat": "wav",
+          "format": "",
+          "rate": 44100,
+          "sampleCount": 1032,
+          "md5ext": "83a9787d4cb6f3b7632b4ddfebf74367.wav"
+        }
+      ],
+      "volume": 100,
+      "layerOrder": 0,
+      "tempo": 60,
+      "videoTransparency": 50,
+      "videoState": "on"
+    },
+    {
+      "isStage": false,
+      "name": "First",
+      "variables": {},
+      "lists": {},
+      "broadcasts": {},
+      "blocks": {},
+      "comments": {},
+      "currentCostume": 0,
+      "costumes": [
+        {
+          "assetId": "613c377136af410d014ac9580d4b26f7",
+          "name": "bowtie-a",
+          "bitmapResolution": 1,
+          "md5ext": "613c377136af410d014ac9580d4b26f7.svg",
+          "dataFormat": "svg",
+          "rotationCenterX": 11,
+          "rotationCenterY": 4
+        },
+        {
+          "assetId": "f56cc7c523a9e242221a8f5c72a6934a",
+          "name": "bowtie-b",
+          "bitmapResolution": 1,
+          "md5ext": "f56cc7c523a9e242221a8f5c72a6934a.svg",
+          "dataFormat": "svg",
+          "rotationCenterX": 11,
+          "rotationCenterY": 4
+        }
+      ],
+      "sounds": [
+        {
+          "assetId": "83a9787d4cb6f3b7632b4ddfebf74367",
+          "name": "pop",
+          "dataFormat": "wav",
+          "format": "",
+          "rate": 44100,
+          "sampleCount": 1032,
+          "md5ext": "83a9787d4cb6f3b7632b4ddfebf74367.wav"
+        }
+      ],
+      "volume": 100,
+      "layerOrder": 2,
+      "visible": true,
+      "x": -22.88381743,
+      "y": 5.96685083,
+      "size": 160,
+      "direction": 90,
+      "draggable": true,
+      "rotationStyle": "all around"
+    },
+    {
+      "isStage": false,
+      "name": "Second",
+      "variables": {},
+      "lists": {},
+      "broadcasts": {},
+      "blocks": {},
+      "comments": {},
+      "currentCostume": 0,
+      "costumes": [
+        {
+          "assetId": "4490f27a28b3c677348f330297a3bb89",
+          "name": "costume1",
+          "bitmapResolution": 1,
+          "md5ext": "4490f27a28b3c677348f330297a3bb89.svg",
+          "dataFormat": "svg",
+          "rotationCenterX": 47,
+          "rotationCenterY": 55
+        },
+        {
+          "assetId": "d15c553bc1cd08d2d9d15eba9df5cd1b",
+          "name": "costume2",
+          "bitmapResolution": 1,
+          "md5ext": "d15c553bc1cd08d2d9d15eba9df5cd1b.svg",
+          "dataFormat": "svg",
+          "rotationCenterX": 47,
+          "rotationCenterY": 55
+        }
+      ],
+      "sounds": [
+        {
+          "assetId": "83c36d806dc92327b9e7049a565c6bff",
+          "name": "meow",
+          "dataFormat": "wav",
+          "format": "",
+          "rate": 44100,
+          "sampleCount": 37376,
+          "md5ext": "83c36d806dc92327b9e7049a565c6bff.wav"
+        }
+      ],
+      "volume": 100,
+      "layerOrder": 1,
+      "visible": true,
+      "x": 0,
+      "y": 0,
+      "size": 100,
+      "direction": 90,
+      "draggable": false,
+      "rotationStyle": "all around"
+    },
+    {
+      "isStage": false,
+      "name": "Third",
+      "variables": {},
+      "lists": {},
+      "broadcasts": {},
+      "blocks": {},
+      "comments": {},
+      "currentCostume": 0,
+      "costumes": [
+        {
+          "assetId": "ab53564b459a91028c3bf1a3551f1631",
+          "name": "building-a",
+          "bitmapResolution": 1,
+          "md5ext": "ab53564b459a91028c3bf1a3551f1631.svg",
+          "dataFormat": "svg",
+          "rotationCenterX": 40,
+          "rotationCenterY": 30
+        },
+        {
+          "assetId": "b952a069c9ac22d4ac09c1af44424c67",
+          "name": "building-b",
+          "bitmapResolution": 1,
+          "md5ext": "b952a069c9ac22d4ac09c1af44424c67.svg",
+          "dataFormat": "svg",
+          "rotationCenterX": 46,
+          "rotationCenterY": -11
+        },
+        {
+          "assetId": "50c6f56e0191f9436c64422044a92c76",
+          "name": "building-c",
+          "bitmapResolution": 1,
+          "md5ext": "50c6f56e0191f9436c64422044a92c76.svg",
+          "dataFormat": "svg",
+          "rotationCenterX": 25,
+          "rotationCenterY": 17
+        },
+        {
+          "assetId": "d9790f9aecf011a31d572f120e2b118b",
+          "name": "building-d",
+          "bitmapResolution": 1,
+          "md5ext": "d9790f9aecf011a31d572f120e2b118b.svg",
+          "dataFormat": "svg",
+          "rotationCenterX": 59,
+          "rotationCenterY": -10
+        },
+        {
+          "assetId": "fb8f053378c3bfd9725788f2132881d8",
+          "name": "building-e",
+          "bitmapResolution": 1,
+          "md5ext": "fb8f053378c3bfd9725788f2132881d8.svg",
+          "dataFormat": "svg",
+          "rotationCenterX": 36,
+          "rotationCenterY": 55
+        },
+        {
+          "assetId": "6ea4b6088b955e6da28d1d02ed8b737b",
+          "name": "building-f",
+          "bitmapResolution": 1,
+          "md5ext": "6ea4b6088b955e6da28d1d02ed8b737b.svg",
+          "dataFormat": "svg",
+          "rotationCenterX": 41,
+          "rotationCenterY": 27
+        },
+        {
+          "assetId": "51de720af9e3b180be7d8c55f2281f47",
+          "name": "building-g",
+          "bitmapResolution": 1,
+          "md5ext": "51de720af9e3b180be7d8c55f2281f47.svg",
+          "dataFormat": "svg",
+          "rotationCenterX": 64,
+          "rotationCenterY": -65
+        },
+        {
+          "assetId": "83fb74916e865cb628305c203a5889f3",
+          "name": "building-h",
+          "bitmapResolution": 1,
+          "md5ext": "83fb74916e865cb628305c203a5889f3.svg",
+          "dataFormat": "svg",
+          "rotationCenterX": 33,
+          "rotationCenterY": 136
+        },
+        {
+          "assetId": "7c75c78cddea6c2f4463c22a2a7b12c1",
+          "name": "building-i",
+          "bitmapResolution": 1,
+          "md5ext": "7c75c78cddea6c2f4463c22a2a7b12c1.svg",
+          "dataFormat": "svg",
+          "rotationCenterX": 31,
+          "rotationCenterY": -12
+        },
+        {
+          "assetId": "0d08fd317df35626dd66973fb31c7fb2",
+          "name": "building-j",
+          "bitmapResolution": 1,
+          "md5ext": "0d08fd317df35626dd66973fb31c7fb2.svg",
+          "dataFormat": "svg",
+          "rotationCenterX": 29,
+          "rotationCenterY": 33
+        }
+      ],
+      "sounds": [
+        {
+          "assetId": "83a9787d4cb6f3b7632b4ddfebf74367",
+          "name": "pop",
+          "dataFormat": "wav",
+          "format": "",
+          "rate": 44100,
+          "sampleCount": 1032,
+          "md5ext": "83a9787d4cb6f3b7632b4ddfebf74367.wav"
+        }
+      ],
+      "volume": 100,
+      "layerOrder": 3,
+      "visible": true,
+      "x": -22,
+      "y": -23,
+      "size": 100,
+      "direction": 90,
+      "draggable": false,
+      "rotationStyle": "all around"
+    }
+  ],
+  "extensions": [],
+  "meta": {
+    "semver": "3.0.0",
+    "vm": "0.2.0",
+    "agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36"
+  }
+}

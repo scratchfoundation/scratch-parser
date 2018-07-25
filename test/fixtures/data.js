@@ -44,12 +44,15 @@ module.exports = {
     },
     sb3_comments: {
         comments: fs.readFileSync(path.resolve(__dirname, './data/_comments.sb3')),
-        invalid_comments: fs.readFileSync(path.resolve(__dirname, './data/_invalid_comments.sb3'))
+        invalid_comments: fs.readFileSync(path.resolve(__dirname, './data/invalid/_invalid_comments.sb3'))
     },
     sb: sb,
     sb2: sb2,
     sb3: sb3,
     json: json,
     gzipJson: gzipJson,
-    sprite2: sprite2
+    sprite2: sprite2,
+    layerOrderSB3Json: fs.readFileSync(path.resolve(__dirname, './data/_layer_ordering.json')),
+    invalidStageLayerSB3Json: fs.readFileSync(path.resolve(__dirname, './data/invalid/_invalid_stage_layer.json')),
+    invalidSpriteLayerSB3Json: fs.readFileSync(path.resolve(__dirname, './data/invalid/_invalid_sprite_layer.json'))
 };

@@ -72,3 +72,28 @@ test('invalid, sprite', function (t) {
         t.end();
     });
 });
+
+// Test layer order rules
+test('sb3 json with valid layerOrder props for stage and sprites', function (t) {
+    validate(false, JSON.parse(data.layerOrderSB3Json), function (err, res) {
+        t.equal(err, null);
+        t.type(res, 'object');
+        t.end();
+    });
+});
+
+test('sb3 json with invalid layerOrder prop for stage', function (t) {
+    validate(false, JSON.parse(data.invalidStageLayerSB3Json), function (err, res) {
+        t.type(err, 'object');
+        t.type(res, 'undefined');
+        t.end();
+    });
+});
+
+test('sb3 json with invalid layerOrder prop for sprite', function (t) {
+    validate(false, JSON.parse(data.invalidSpriteLayerSB3Json), function (err, res) {
+        t.type(err, 'object');
+        t.type(res, 'undefined');
+        t.end();
+    });
+});
