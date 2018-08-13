@@ -9,11 +9,12 @@
                 {"type": "null"}
             ]
         },
-        "boolOrBoolString": {
+        "boolOrOptBoolString": {
             "oneOf": [
                 {"type": "string",
-                 "enum": ["true", "false"]},
-                {"type": "boolean"}
+                 "enum": ["true", "false", "null"]},
+                {"type": "boolean"},
+                {"type": "null"}
             ]
         },
         "stringOrNumber": {
@@ -275,8 +276,8 @@
                         "argumentids": {
                             "type": "string"
                         },
-                        "warp": {"$ref":"#/definitions/boolOrBoolString"},
-                        "hasnext": {"$ref":"#/definitions/boolOrBoolString"}
+                        "warp": {"$ref":"#/definitions/boolOrOptBoolString"},
+                        "hasnext": {"$ref":"#/definitions/boolOrOptBoolString"}
                     }
                 }
             },
