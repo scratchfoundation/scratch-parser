@@ -9,6 +9,12 @@
                 {"type": "null"}
             ]
         },
+        "optionalNumber": {
+            "oneOf": [
+                {"type": "number"},
+                {"type": "null"}
+            ]
+        },
         "boolOrOptBoolString": {
             "oneOf": [
                 {"type": "string",
@@ -294,8 +300,8 @@
                     "maxLength": 8000
                 },
                 "minimized": {"type": "boolean"},
-                "x": {"type": "number"},
-                "y": {"type": "number"},
+                "x": {"$ref": "#/definitions/optionalNumber"},
+                "y": {"$ref": "#/definitions/optionalNumber"},
                 "width": {"type": "number"},
                 "height": {"type": "number"}
             },
