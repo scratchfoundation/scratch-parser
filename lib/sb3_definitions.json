@@ -347,8 +347,7 @@
             "description": "Description of property (and/or property/value pairs) for sprites.",
             "properties": {
                 "name": {
-                    "type": "string",
-                    "not": {"enum": ["Stage", "stage"]}
+                    "type": "string"
                 },
                 "isStage": {
                     "type": "boolean",
