@@ -348,7 +348,7 @@
             "properties": {
                 "name": {
                     "type": "string",
-                    "not": {"enum": ["Stage", "stage"]}
+                    "not": {"enum": ["_stage_"]}
                 },
                 "isStage": {
                     "type": "boolean",

@@ -30,6 +30,22 @@ test('sb2', function (t) {
     }
 });
 
+test('sb3', function (t) {
+    var set = data.sb3;
+    t.plan(set.length * 5);
+    for (var i in data.sb3) {
+        parser(data.sb3[i], false, function (err, result) {
+            t.equal(err, null);
+            t.equal(Array.isArray(result), true);
+            var res = result[0];
+            var possibleZip = result[1];
+            t.type(res, 'object');
+            t.type(res.targets, 'object');
+            t.equal(possibleZip instanceof JSZip, true);
+        });
+    }
+});
+
 test('json', function (t) {
     var set = data.json;
     t.plan(set.length * 6);
