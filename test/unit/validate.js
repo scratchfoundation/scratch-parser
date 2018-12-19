@@ -97,3 +97,12 @@ test('sb3 json with invalid layerOrder prop for sprite', function (t) {
         t.end();
     });
 });
+
+// Sprites should not be named _stage_
+test('sb3 json with invalid sprite name', function (t) {
+    validate(false, JSON.parse(data.invalidSpriteNameSB3Json), function (err, res) {
+        t.type(err, 'object');
+        t.type(res, 'undefined');
+        t.end();
+    });
+});

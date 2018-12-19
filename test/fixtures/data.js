@@ -54,5 +54,7 @@ module.exports = {
     sprite2: sprite2,
     layerOrderSB3Json: fs.readFileSync(path.resolve(__dirname, './data/_layer_ordering.json')),
     invalidStageLayerSB3Json: fs.readFileSync(path.resolve(__dirname, './data/invalid/_invalid_stage_layer.json')),
-    invalidSpriteLayerSB3Json: fs.readFileSync(path.resolve(__dirname, './data/invalid/_invalid_sprite_layer.json'))
+    invalidSpriteLayerSB3Json: fs.readFileSync(path.resolve(__dirname, './data/invalid/_invalid_sprite_layer.json')),
+    invalidSpriteNameSB3Json: fs.readFileSync(
+        path.resolve(__dirname, './data/invalid/_invalid_spriteNamed_stage_.json'))
 };
