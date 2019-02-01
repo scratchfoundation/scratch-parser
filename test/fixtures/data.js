@@ -33,14 +33,16 @@ module.exports = {
         sb: fs.readFileSync(path.resolve(__dirname, './data/_example.sb')),
         sb2: fs.readFileSync(path.resolve(__dirname, './data/_example.sb2')),
         json: fs.readFileSync(path.resolve(__dirname, './data/_example.json')),
-        gzipJson: fs.readFileSync(path.resolve(__dirname, './data/_example.json.gz'))
+        gzipJson: fs.readFileSync(path.resolve(__dirname, './data/_example.json.gz')),
+        invalidEmpty: fs.readFileSync(path.resolve(__dirname, './data/invalid/_invalidEmpty.sb2'))
     },
     sprites: {
         default_cat_sprite2: fs.readFileSync(path.resolve(__dirname, './data/_default_cat.sprite2')),
         default_cat_sprite2_json: fs.readFileSync(path.resolve(__dirname, './data/_default_cat.sprite2json')),
         example_sprite2: fs.readFileSync(path.resolve(__dirname, './data/_example_sprite.sprite2')),
         example_sprite2_json: fs.readFileSync(path.resolve(__dirname, './data/_example_sprite.sprite2json')),
-        bananas_sprite2: fs.readFileSync(path.resolve(__dirname, './data/_bananas.sprite2'))
+        bananas_sprite2: fs.readFileSync(path.resolve(__dirname, './data/_bananas.sprite2')),
+        bananas_nested_sprite2: fs.readFileSync(path.resolve(__dirname, './data/_bananas_nested.sprite2'))
     },
     sb3_comments: {
         comments: fs.readFileSync(path.resolve(__dirname, './data/_comments.sb3')),

@@ -62,3 +62,13 @@ test('gzipped json', function (t) {
         t.end();
     });
 });
+
+test('invalid empty project archive', function (t) {
+    var msg = 'Failed to unzip and extract project.json, with error: ';
+    parser(data.example.invalidEmpty, false, function (err, result) {
+        t.type(err, 'string');
+        t.equal(err.startsWith(msg), true);
+        t.type(result, 'undefined');
+        t.end();
+    });
+});
