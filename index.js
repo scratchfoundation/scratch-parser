@@ -1,8 +1,8 @@
-var async = require('async');
+var pify = require('pify');
 
-var unpack = require('./lib/unpack');
-var parse = require('./lib/parse');
-var validate = require('./lib/validate');
+var unpack = pify(require('./lib/unpack'));
+var parse = pify(require('./lib/parse'));
+var validate = pify(require('./lib/validate'));
 
 /**
   * Unpacks, parses, validates, and analyzes Scratch projects. If successful,
@@ -12,23 +12,15 @@ var validate = require('./lib/validate');
   * @param {Function}        callback Returns error or project data
   */
 module.exports = function (input, isSprite, callback) {
-    // First unpack the input (need this outside of the async waterfall so that
-    // unpackedProject can be refered to again)
-    unpack(input, isSprite, function (err, unpackedProject) {
-        if (err) return callback(err);
-
-        async.waterfall([
-            function (cb) {
-                parse(unpackedProject[0], cb);
-            },
-            // TODO is there a better way to pass this arg
-            // than partially applying this funciton?
-            validate.bind(null, isSprite)
-        ], function (error, validatedInput) {
-            // One more callback wrapper so that we can re-package everything
-            // with the possible zip returned from unpack
-            if (error) return callback(error);
-            callback(null, [validatedInput, unpackedProject[1]]);
-        });
-    });
+    // Unpack the input and further transform the json portion by parsing and
+    // validating it.
+    unpack(input, isSprite)
+        .then(function (unpackedProject) {
+            return parse(unpackedProject[0])
+                .then(validate.bind(null, isSprite))
+                .then(function (validatedProject) {
+                    return [validatedProject, unpackedProject[1]];
+                });
+        })
+        .then(callback.bind(null, null), callback);
 };
