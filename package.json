@@ -22,8 +22,9 @@
   "dependencies": {
     "ajv": "6.3.0",
     "async": "2.6.0",
+    "gzip-js": "0.3.2",
     "jszip": "3.1.5",
-    "gzip-js": "0.3.2"
+    "pify": "4.0.1"
   },
   "devDependencies": {
     "@commitlint/cli": "7.2.1",
