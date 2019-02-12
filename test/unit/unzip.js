@@ -11,7 +11,8 @@ var fixtures = {
     zipFakeProjectJSON:
         path.resolve(__dirname, '../fixtures/data/_zipFakeProjectJson.zip'),
     zipNoProjectJSON:
-        path.resolve(__dirname, '../fixtures/data/_zipNoProjectJson.zip')
+        path.resolve(__dirname, '../fixtures/data/_zipNoProjectJson.zip'),
+    sb2Nested: path.resolve(__dirname, '../fixtures/data/_nestedFolder.sb2')
 };
 
 for (var i in fixtures) {
@@ -59,6 +60,20 @@ test('gzipped JSON', function (t) {
             JSON.parse(res[0]);
         });
         t.equal(res[1], null);
+        t.end();
+    });
+});
+
+test('sb2 with nested folder', function (t) {
+    var buffer = new Buffer(fixtures.sb2Nested);
+    unzip(buffer, false, false, function (err, res) {
+        t.equal(err, null);
+        t.equal(Array.isArray(res), true);
+        t.type(res[0], 'string');
+        t.doesNotThrow(function () {
+            JSON.parse(res[0]);
+        });
+        t.equal(res[1] instanceof JSZip, true);
         t.end();
     });
 });
