@@ -49,16 +49,3 @@ test('json string', function (t) {
         t.end();
     });
 });
-
-test('gzipped json', function (t) {
-    parser(data.empty.gzipJson, false, function (err, result) {
-        t.equal(err, null);
-        t.equal(Array.isArray(result), true);
-        var res = result[0];
-        var possibleZip = result[1];
-        t.type(res, 'object');
-        t.type(res.info, 'object');
-        t.equal(possibleZip, null);
-        t.end();
-    });
-});

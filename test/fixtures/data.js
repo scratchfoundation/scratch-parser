@@ -11,14 +11,12 @@ var sprite2 = glob.sync(path.resolve(__dirname, './data/*.sprite2'));
 // so that they don't get caught here but can still be used by the
 // validate unit tests
 var json = glob.sync(path.resolve(__dirname, './data/*.json'));
-var gzipJson = glob.sync(path.resolve(__dirname, './data/*.json.gz'));
 
 // Read files and convert to buffers
 for (var a in sb) sb[a] = fs.readFileSync(sb[a]);
 for (var b in sb2) sb2[b] = fs.readFileSync(sb2[b]);
 for (var c in sb3) sb3[c] = fs.readFileSync(sb3[c]);
 for (var d in json) json[d] = fs.readFileSync(json[d]);
-for (var e in gzipJson) gzipJson[e] = fs.readFileSync(gzipJson[e]);
 for (var f in sprite2) sprite2[f] = fs.readFileSync(sprite2[f]);
 
 // Return listings
@@ -26,14 +24,12 @@ module.exports = {
     empty: {
         sb: fs.readFileSync(path.resolve(__dirname, './data/_empty.sb')),
         sb2: fs.readFileSync(path.resolve(__dirname, './data/_empty.sb2')),
-        json: fs.readFileSync(path.resolve(__dirname, './data/_empty.json')),
-        gzipJson: fs.readFileSync(path.resolve(__dirname, './data/_empty.json.gz'))
+        json: fs.readFileSync(path.resolve(__dirname, './data/_empty.json'))
     },
     example: {
         sb: fs.readFileSync(path.resolve(__dirname, './data/_example.sb')),
         sb2: fs.readFileSync(path.resolve(__dirname, './data/_example.sb2')),
         json: fs.readFileSync(path.resolve(__dirname, './data/_example.json')),
-        gzipJson: fs.readFileSync(path.resolve(__dirname, './data/_example.json.gz')),
         invalidEmpty: fs.readFileSync(path.resolve(__dirname, './data/invalid/_invalidEmpty.sb2'))
     },
     sprites: {
@@ -52,7 +48,6 @@ module.exports = {
     sb2: sb2,
     sb3: sb3,
     json: json,
-    gzipJson: gzipJson,
     sprite2: sprite2,
     layerOrderSB3Json: fs.readFileSync(path.resolve(__dirname, './data/_layer_ordering.json')),
     invalidStageLayerSB3Json: fs.readFileSync(path.resolve(__dirname, './data/invalid/_invalid_stage_layer.json')),

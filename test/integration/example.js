@@ -50,19 +50,6 @@ test('json string', function (t) {
     });
 });
 
-test('gzipped json', function (t) {
-    parser(data.example.gzipJson, false, function (err, result) {
-        t.equal(err, null);
-        t.equal(Array.isArray(result), true);
-        var res = result[0];
-        var possibleZip = result[1];
-        t.type(res, 'object');
-        t.type(res.info, 'object');
-        t.equal(possibleZip, null);
-        t.end();
-    });
-});
-
 test('invalid empty project archive', function (t) {
     var msg = 'Failed to unzip and extract project.json, with error: ';
     parser(data.example.invalidEmpty, false, function (err, result) {

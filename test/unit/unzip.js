@@ -7,7 +7,6 @@ var unzip = require('../../lib/unzip');
 var fixtures = {
     sb: path.resolve(__dirname, '../fixtures/data/_example.sb'),
     sb2: path.resolve(__dirname, '../fixtures/data/_example.sb2'),
-    gzipJSON: path.resolve(__dirname, '../fixtures/data/_example.json.gz'),
     zipFakeProjectJSON:
         path.resolve(__dirname, '../fixtures/data/_zipFakeProjectJson.zip'),
     zipNoProjectJSON:
@@ -28,7 +27,7 @@ test('spec', function (t) {
 
 test('sb', function (t) {
     var buffer = new Buffer(fixtures.sb);
-    unzip(buffer, false, false, function (err, res) {
+    unzip(buffer, false, function (err, res) {
         t.type(err, 'string');
         t.equal(err.startsWith(errorMessage), true);
         t.type(res, 'undefined');
@@ -38,7 +37,7 @@ test('sb', function (t) {
 
 test('sb2', function (t) {
     var buffer = new Buffer(fixtures.sb2);
-    unzip(buffer, false, false, function (err, res) {
+    unzip(buffer, false, function (err, res) {
         t.equal(err, null);
         t.equal(Array.isArray(res), true);
         t.type(res[0], 'string');
@@ -50,23 +49,9 @@ test('sb2', function (t) {
     });
 });
 
-test('gzipped JSON', function (t) {
-    var buffer = new Buffer(fixtures.gzipJSON);
-    unzip(buffer, true, false, function (err, res) {
-        t.equal(err, null);
-        t.equal(Array.isArray(res), true);
-        t.type(res[0], 'string');
-        t.doesNotThrow(function () {
-            JSON.parse(res[0]);
-        });
-        t.equal(res[1], null);
-        t.end();
-    });
-});
-
 test('sb2 with nested folder', function (t) {
     var buffer = new Buffer(fixtures.sb2Nested);
-    unzip(buffer, false, false, function (err, res) {
+    unzip(buffer, false, function (err, res) {
         t.equal(err, null);
         t.equal(Array.isArray(res), true);
         t.type(res[0], 'string');
@@ -80,7 +65,7 @@ test('sb2 with nested folder', function (t) {
 
 test('zip without project json', function (t) {
     var buffer = new Buffer(fixtures.zipNoProjectJSON);
-    unzip(buffer, false, false, function (err, res) {
+    unzip(buffer, false, function (err, res) {
         t.type(err, 'string');
         t.equal(err.startsWith(errorMessage), true);
         t.type(res, 'undefined');
@@ -90,7 +75,7 @@ test('zip without project json', function (t) {
 
 test('zip with fake project json', function (t) {
     var buffer = new Buffer(fixtures.zipFakeProjectJSON);
-    unzip(buffer, false, false, function (err, res) {
+    unzip(buffer, false, function (err, res) {
         t.equal(err, null);
         t.equal(Array.isArray(res), true);
         t.type(res[0], 'string');
@@ -106,7 +91,7 @@ test('zip with fake project json', function (t) {
 var randomString = 'this is not a zip';
 
 test('random string instead of zip, whole project', function (t) {
-    unzip(randomString, false, false, function (err, res) {
+    unzip(randomString, false, function (err, res) {
         t.type(err, 'string');
         t.equal(err.startsWith(errorMessage), true);
         t.type(res, 'undefined');
@@ -115,25 +100,7 @@ test('random string instead of zip, whole project', function (t) {
 });
 
 test('random string instead of zip, sprite', function (t) {
-    unzip(randomString, false, true, function (err, res) {
-        t.type(err, 'string');
-        t.equal(err.startsWith(errorMessage), true);
-        t.type(res, 'undefined');
-        t.end();
-    });
-});
-
-test('random string instead of gzip, whole project ', function (t) {
-    unzip(randomString, true, false, function (err, res) {
-        t.type(err, 'string');
-        t.equal(err.startsWith(errorMessage), true);
-        t.type(res, 'undefined');
-        t.end();
-    });
-});
-
-test('random string instead of gzip, sprite', function (t) {
-    unzip(randomString, true, true, function (err, res) {
+    unzip(randomString, true, function (err, res) {
         t.type(err, 'string');
         t.equal(err.startsWith(errorMessage), true);
         t.type(res, 'undefined');
@@ -143,17 +110,7 @@ test('random string instead of gzip, sprite', function (t) {
 
 test('undefined', function (t) {
     var foo;
-    unzip(foo, false, false, function (err, obj) {
-        t.type(err, 'string');
-        t.equal(err.startsWith(errorMessage), true);
-        t.type(obj, 'undefined');
-        t.end();
-    });
-});
-
-test('undefined isGZip', function (t) {
-    var foo;
-    unzip(foo, true, false, function (err, obj) {
+    unzip(foo, false, function (err, obj) {
         t.type(err, 'string');
         t.equal(err.startsWith(errorMessage), true);
         t.type(obj, 'undefined');
@@ -162,7 +119,7 @@ test('undefined isGZip', function (t) {
 });
 
 test('null instead of zip, whole project', function (t) {
-    unzip(null, false, false, function (err, obj) {
+    unzip(null, false, function (err, obj) {
         t.type(err, 'string');
         t.equal(err.startsWith(errorMessage), true);
         t.type(obj, 'undefined');
@@ -171,25 +128,7 @@ test('null instead of zip, whole project', function (t) {
 });
 
 test('null instead of zip, sprite', function (t) {
-    unzip(null, false, true, function (err, obj) {
-        t.type(err, 'string');
-        t.equal(err.startsWith(errorMessage), true);
-        t.type(obj, 'undefined');
-        t.end();
-    });
-});
-
-test('null instead of gzip, whole project', function (t) {
-    unzip(null, true, false, function (err, obj) {
-        t.type(err, 'string');
-        t.equal(err.startsWith(errorMessage), true);
-        t.type(obj, 'undefined');
-        t.end();
-    });
-});
-
-test('null instead of gzip, sprite', function (t) {
-    unzip(null, true, true, function (err, obj) {
+    unzip(null, true, function (err, obj) {
         t.type(err, 'string');
         t.equal(err.startsWith(errorMessage), true);
         t.type(obj, 'undefined');
@@ -198,7 +137,7 @@ test('null instead of gzip, sprite', function (t) {
 });
 
 test('object instead of zip, whole project', function (t) {
-    unzip({}, false, false, function (err, obj) {
+    unzip({}, false, function (err, obj) {
         t.type(err, 'string');
         t.equal(err.startsWith(errorMessage), true);
         t.type(obj, 'undefined');
@@ -207,25 +146,7 @@ test('object instead of zip, whole project', function (t) {
 });
 
 test('object instead of zip, sprite', function (t) {
-    unzip({}, false, true, function (err, obj) {
-        t.type(err, 'string');
-        t.equal(err.startsWith(errorMessage), true);
-        t.type(obj, 'undefined');
-        t.end();
-    });
-});
-
-test('object instead of gzip, whole project', function (t) {
-    unzip({}, true, false, function (err, obj) {
-        t.type(err, 'string');
-        t.equal(err.startsWith(errorMessage), true);
-        t.type(obj, 'undefined');
-        t.end();
-    });
-});
-
-test('object instead of gzip, sprite', function (t) {
-    unzip({}, true, false, function (err, obj) {
+    unzip({}, true, function (err, obj) {
         t.type(err, 'string');
         t.equal(err.startsWith(errorMessage), true);
         t.type(obj, 'undefined');
