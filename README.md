@@ -24,7 +24,7 @@ var fs = require('fs');
 var parser = require('scratch-parser');
 
 var buffer = fs.readFileSync('/path/to/project.sb2');
-parser(buffer, function (err, project) {
+parser(buffer, false, function (err, project) {
     if (err) // handle the error
     // do something interesting
 });
