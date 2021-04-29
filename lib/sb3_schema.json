@@ -17,6 +17,9 @@
                 },
                 "agent": {
                     "type": "string"
+                },
+                "origin": {
+                    "type": "string"
                 }
             },
             "required": [
