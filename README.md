@@ -1,8 +1,8 @@
 # scratch-parser
 
 #### Parser for Scratch projects
+[![CircleCI](https://circleci.com/gh/LLK/scratch-parser/tree/develop.svg?style=shield&circle-token=8bf55740611abf98152feec3797bac5ee4149c7c)](https://circleci.com/gh/LLK/scratch-parser?branch=develop)
 
-[![Build Status](https://travis-ci.org/LLK/scratch-parser.svg?branch=develop)](https://travis-ci.org/LLK/scratch-parser)
 [![dependencies Status](https://david-dm.org/llk/scratch-parser/status.svg)](https://david-dm.org/llk/scratch-parser)
 [![devDependencies Status](https://david-dm.org/llk/scratch-parser/dev-status.svg)](https://david-dm.org/llk/scratch-parser?type=dev)
 
