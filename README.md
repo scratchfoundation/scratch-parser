@@ -1,22 +1,24 @@
 # scratch-parser
 
-#### Parser for Scratch projects
-[![CircleCI](https://circleci.com/gh/LLK/scratch-parser/tree/develop.svg?style=shield&circle-token=8bf55740611abf98152feec3797bac5ee4149c7c)](https://circleci.com/gh/LLK/scratch-parser?branch=develop)
+Parser for Scratch projects
 
-[![dependencies Status](https://david-dm.org/llk/scratch-parser/status.svg)](https://david-dm.org/llk/scratch-parser)
-[![devDependencies Status](https://david-dm.org/llk/scratch-parser/dev-status.svg)](https://david-dm.org/llk/scratch-parser?type=dev)
+[![CircleCI](https://circleci.com/gh/LLK/scratch-parser.svg?style=shield)](https://app.circleci.com/pipelines/github/LLK/scratch-parser?branch=master)
 
 ## Overview
-The Scratch Parser is a [Node.js](https://nodejs.org) module that parses and validates [Scratch](https://scratch.mit.edu) projects.
+
+The Scratch Parser is a [Node.js](https://nodejs.org) module that parses and validates
+[Scratch](https://scratch.mit.edu) projects.
 
 ## API
 
-#### Installation
-```bash
+### Installation
+
+```sh
 npm install scratch-parser
 ```
 
-#### Basic Use
+### Basic Use
+
 ```js
 var fs = require('fs');
 var parser = require('scratch-parser');
@@ -28,8 +30,10 @@ parser(buffer, function (err, project) {
 });
 ```
 
-#### "Info"
-In addition to the `_meta` data described above, Scratch projects include an attribute called `info` that *may* include the following:
+### "Info"
+
+In addition to the `_meta` data described above, Scratch projects include an attribute called `info` that *may*
+include the following:
 
 | Key               | Description                                              |
 | ----------------- | -------------------------------------------------------- |
@@ -40,22 +44,26 @@ In addition to the `_meta` data described above, Scratch projects include an att
 
 ## Testing
 
-#### Running the Test Suite
-```bash
+### Running the Test Suite
+
+```sh
 npm test
 ```
 
-#### Code Coverage Report
-```bash
+### Code Coverage Report
+
+```sh
 make coverage
 ```
 
-#### Performance Benchmarks / Stress Testing
-```bash
+### Performance Benchmarks / Stress Testing
+
+```sh
 make benchmark
 ```
 
 ## Committing
+
 This project uses [semantic release](https://github.com/semantic-release/semantic-release)
 to ensure version bumps follow semver so that projects using the config don't
 break unexpectedly.
@@ -63,7 +71,8 @@ break unexpectedly.
 In order to automatically determine the type of version bump necessary, semantic
 release expects commit messages to be formatted following
 [conventional-changelog](https://github.com/bcoe/conventional-changelog-standard/blob/master/convention.md).
-```
+
+```text
 <type>(<scope>): <subject>
 <BLANK LINE>
 <body>
@@ -76,6 +85,7 @@ where you would include `BREAKING CHANGE` and `ISSUES FIXED` sections if
 applicable.
 
 `type` is one of:
+
 * `fix`: A bug fix **Causes a patch release (0.0.x)**
 * `feat`: A new feature **Causes a minor release (0.x.0)**
 * `docs`: Documentation only changes
@@ -90,7 +100,7 @@ applicable.
 Use the [commitizen CLI](https://github.com/commitizen/cz-cli) to make commits
 formatted in this way:
 
-```bash
+```sh
 npm install -g commitizen
 npm install
 ```
@@ -98,6 +108,7 @@ npm install
 Now you're ready to make commits using `git cz`.
 
 ## Breaking changes
+
 If you're committing a change that will require changes to existing code, ensure
 your commit specifies a breaking change.  In your commit body, prefix the changes with "BREAKING CHANGE: "
 This will cause a major version bump so downstream projects must choose to upgrade
