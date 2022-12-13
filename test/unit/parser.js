@@ -61,3 +61,27 @@ test('backspace control characters get stripped out in sb3', function (t) {
         t.end();
     });
 });
+
+test('backslashes are kept when stripping backspace control characters', function (t) {
+    var json = JSON.stringify({
+        test: '\\\\\baaa\ba'
+    });
+    parse(json, function (err, res) {
+        t.equal(err, null);
+        t.type(res, 'object');
+        t.equal(res.test, '\\\\aaaa');
+        t.end();
+    });
+});
+
+test('backslashes followed by b are not stripped at all', function (t) {
+    var json = JSON.stringify({
+        test: '\\b\b\\\\b'
+    });
+    parse(json, function (err, res) {
+        t.equal(err, null);
+        t.type(res, 'object');
+        t.equal(res.test, '\\b\\\\b');
+        t.end();
+    });
+});
