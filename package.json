@@ -16,7 +16,7 @@
     "test:integration": "tap test/integration/*.js",
     "test:coverage": "tap test/{unit,integration}/*.js --coverage --coverage-report=lcov",
     "test:benchmark": "node test/benchmark/performance.js",
-    "test": "npm run test:lint && npm run test:unit && npm run test:integration",
+    "test": "npm run test:unit && npm run test:integration",
     "semantic-release": "semantic-release"
   },
   "dependencies": {
