@@ -34,7 +34,7 @@
     "eslint": "^4.19.1",
     "eslint-config-scratch": "5.0.0",
     "glob": "^7.0.6",
-    "husky": "0.14.3",
+    "husky": "8.0.3",
     "semantic-release": "^15.1.6",
     "tap": "^11.1.3"
   },
