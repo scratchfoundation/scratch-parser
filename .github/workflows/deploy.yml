@@ -40,7 +40,6 @@ jobs:
         - name: Run All Tests
           run: npm run test
         - name: Semantic Release
-          if: github.ref == 'master'
           env:
             NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
