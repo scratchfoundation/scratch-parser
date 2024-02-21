@@ -32,7 +32,7 @@
     "benchmark": "2.1.4",
     "cz-conventional-changelog": "2.1.0",
     "eslint": "8.56.0",
-    "eslint-config-scratch": "9.0.3",
+    "eslint-config-scratch": "9.0.4",
     "glob": "7.2.3",
     "husky": "0.14.3",
     "semantic-release": "^15.1.6",
