@@ -3,11 +3,11 @@
   "description": "Parser for Scratch projects",
   "author": "MIT Media Lab",
   "license": "BSD-3-Clause",
-  "homepage": "https://github.com/LLK/scratch-parser#readme",
+  "homepage": "https://github.com/scratchfoundation/scratch-parser#readme",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/LLK/scratch-parser.git"
+    "url": "https://github.com/scratchfoundation/scratch-parser.git"
   },
   "scripts": {
     "commitmsg": "commitlint -e $GIT_PARAMS",
