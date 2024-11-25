@@ -2,7 +2,7 @@
   "name": "scratch-parser",
   "description": "Parser for Scratch projects",
   "author": "MIT Media Lab",
-  "license": "BSD-3-Clause",
+  "license": "AGPL-3.0-only",
   "homepage": "https://github.com/scratchfoundation/scratch-parser#readme",
   "main": "index.js",
   "repository": {
