@@ -174,7 +174,7 @@
                 "videoAlpha": {
                     "type": "number",
                     "minimum": 0,
-                    "maximum": 1
+                    "maximum": 100
                 },
                 "children": {
                     "type": "array",
