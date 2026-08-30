@@ -1,7 +1,9 @@
 {
-    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "extends": [
-        "github>scratchfoundation/scratch-renovate-config:js-lib"
+    $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+    extends: [
+        'github>scratchfoundation/scratch-renovate-config:js-lib',
     ],
-    "baseBranches": ["master"]
+    baseBranchPatterns: [
+        'master',
+    ],
 }
