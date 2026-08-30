@@ -30,7 +30,7 @@
     "@commitlint/travis-cli": "7.2.1",
     "babel-eslint": "10.1.0",
     "benchmark": "2.1.4",
-    "cz-conventional-changelog": "2.1.0",
+    "cz-conventional-changelog": "3.3.0",
     "eslint": "8.57.0",
     "eslint-config-scratch": "9.0.7",
     "glob": "7.2.3",
